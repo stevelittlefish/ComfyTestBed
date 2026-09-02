@@ -176,7 +176,7 @@ def generate(base, raw_workflow, cfg, prompt_text, client_id, timeout):
     return images, seed, time.time() - started
 
 
-def run(force=False, list_only=False):
+def run(force=False, list_only=False, only_workflows=None):
     cfg = load_config()
     server = cfg.get("server", {})
     # Prefer an explicit base url; fall back to host/port for the nostalgic.
@@ -193,6 +193,17 @@ def run(force=False, list_only=False):
         holly("No prompts. The galaxy of possibilities is, right now, a single "
               "empty room. Add a .txt to prompts/ and try to dream a little bigger.")
         return
+    # Restrict to specific workflow(s) if asked. Whinge about any that don't exist
+    # rather than silently doing nothing and letting the Captain wonder.
+    if only_workflows:
+        wanted = list(only_workflows)
+        unknown = [w for w in wanted if w not in workflows]
+        if unknown:
+            holly(f"Never heard of these workflow(s): {', '.join(unknown)}. "
+                  f"Available: {', '.join(workflows) or '(none)'}. Mind the spelling.")
+            return
+        workflows = {w: workflows[w] for w in wanted}
+
     if not workflows:
         holly("No workflows. I've got things to say and no mouth to say them with. "
               "Drop an API-format export into workflows/.")
@@ -308,8 +319,13 @@ def main():
                     help="Regenerate everything, even combos already done.")
     ap.add_argument("--list", action="store_true", dest="list_only",
                     help="Show the plan and generate nothing.")
+    ap.add_argument("--workflow", "-w", action="append", dest="only_workflows",
+                    metavar="NAME",
+                    help="Only run this workflow (its filename minus .json). "
+                         "Repeat to run several, e.g. -w SDXL -w flux2_klein_9b.")
     args = ap.parse_args()
-    run(force=args.force, list_only=args.list_only)
+    run(force=args.force, list_only=args.list_only,
+        only_workflows=args.only_workflows)
 
 
 if __name__ == "__main__":

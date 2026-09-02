@@ -46,10 +46,16 @@ dependencies. If a feature ever needs a third-party package, we rewrite it in Go
    that don't have results yet:
 
    ```bash
-   python3 run.py            # generate what's missing
-   python3 run.py --list     # show the plan, generate nothing
-   python3 run.py --force    # regenerate everything
+   python3 run.py                    # generate what's missing
+   python3 run.py --list             # show the plan, generate nothing
+   python3 run.py --force            # regenerate everything
+   python3 run.py -w SDXL            # only run one workflow
+   python3 run.py -w SDXL -w flux2_klein_9b   # run several (repeat -w)
    ```
+
+   `--workflow`/`-w` takes a workflow name (its filename minus `.json`) and can be
+   repeated. Combine with `--force` to regenerate just that workflow, or `--list`
+   to preview its plan without touching the server.
 
    Results land in `results/<workflow>/<prompt>/` as image file(s) plus a
    `metadata.json` recording the prompt text, seed, image list, generation time,
