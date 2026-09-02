@@ -34,6 +34,25 @@ world we survey for the first time.
   (in character is fine), with the real error. Don't paper over a failed render with
   flavour text.
 
+## The Airlock — importing cargo
+
+`airlock/` is the Captain's drop zone. He dumps raw, unprocessed files there. Its
+contents are git-ignored (only its README and .gitignore are tracked) — it's part of
+the build process, not the ship.
+
+When the Captain says **"import the new workflows"** (or similar), for each workflow
+JSON in `airlock/`:
+
+1. **Move** it into `workflows/` (`git mv` isn't needed — the source is ignored;
+   a plain move is fine).
+2. **Adjust** it: replace the hardcoded positive-prompt text with `%PROMPT%`, and the
+   KSampler seed with `%SEED%` (unquoted, so it fills as a JSON integer).
+3. **Verify** the substitution still parses — run the placeholder fill against a prompt
+   and confirm valid JSON before declaring victory.
+
+The same pattern applies to other cargo types as they come up: process it out of the
+airlock into its proper tracked home, then commit that.
+
 ## Commit Policy — "raw-dog-3000"
 
 Always refer to this policy by its proper title: **raw-dog-3000**.

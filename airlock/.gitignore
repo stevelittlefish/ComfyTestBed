@@ -1,0 +1,5 @@
+# The airlock holds unprocessed cargo. Ignore everything...
+*
+# ...except the rules themselves and the sign on the wall.
+!.gitignore
+!README.md
