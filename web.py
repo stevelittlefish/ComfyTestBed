@@ -30,6 +30,13 @@ WORKFLOW_ORDER = [
     "sd15",                 # SD 1.5 (v1-5-pruned-emaonly) — Oct 2022 (eldest)
     "sd21",                 # SD 2.1 (v2-1_768-ema-pruned) — Dec 2022
     "SDXL",                 # SD XL base 1.0 — Jul 2023
+    # --- SDXL fine-tunes, grouped with their base rather than by exact date ---
+    "juggernaut_xi",        # Juggernaut XI (RunDiffusion) — SDXL photoreal
+    "cyberrealistic_pony",  # CyberRealistic Pony v8 — SDXL/Pony (score_ handshake)
+    "pony_realism",         # Pony Realism v2.2 — SDXL/Pony (score_ handshake)
+    "illustrious_xl",       # Illustrious XL v0.1 — SDXL anime
+    "hassaku_xl",           # Hassaku XL Illustrious v13 — SDXL anime
+    # --- end SDXL family ---
     "Flux_Schnell",         # FLUX.1 schnell — Aug 2024 (distilled, simplest)
     "flux_dev",             # FLUX.1 dev — Aug 2024 (fuller, after schnell)
     "sd35_large_turbo",     # SD 3.5 Large Turbo — Oct 2024
