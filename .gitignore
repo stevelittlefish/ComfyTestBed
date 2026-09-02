@@ -1,0 +1,3 @@
+# Python's little souvenirs. We don't need them in the ship's log.
+__pycache__/
+*.pyc
