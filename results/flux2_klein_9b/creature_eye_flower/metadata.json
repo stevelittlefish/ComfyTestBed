@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_9b",
+  "prompt": "creature_eye_flower",
+  "prompt_text": "A bizarre floating organism shaped like an inside-out flower with a single wet human-like eye at its centre, surrounded by translucent cartilage petals, tiny sensory hairs, pulsing veins and dangling root-like tendrils. It is hovering in a dark biological laboratory. Grotesque but strangely beautiful, realistic wet organic materials, macro photography quality, dramatic side lighting, highly detailed anatomy, no humanoid body.",
+  "seed": 3631815542,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 53.76,
+  "generated_at": "2026-09-02T01:36:08.691951+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_9b",
+  "prompt": "pencil_drawing_whimsical",
+  "prompt_text": "A whimsical graphite pencil sketch of a cheerful mechanical octopus riding a penny-farthing bicycle while juggling teacups. Loose confident linework, soft cross-hatched shading, smudged graphite texture, visible construction lines, charming and playful, on off-white sketchbook paper.",
+  "seed": 2846299501,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 53.78,
+  "generated_at": "2026-09-02T01:41:30.276074+00:00"
+}
