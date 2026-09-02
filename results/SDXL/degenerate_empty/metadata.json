@@ -1,0 +1,11 @@
+{
+  "workflow": "SDXL",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 694788806,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.23,
+  "generated_at": "2026-09-02T01:24:22.766964+00:00"
+}

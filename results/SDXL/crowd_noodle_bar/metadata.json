@@ -1,0 +1,11 @@
+{
+  "workflow": "SDXL",
+  "prompt": "crowd_noodle_bar",
+  "prompt_text": "A busy late-night noodle restaurant in Tokyo with eight customers doing different things: one couple talking quietly, a delivery rider checking a phone, an elderly man eating alone, two students laughing, and a chef working behind the counter. Steam rising from bowls, condensation on windows, realistic fluorescent and warm kitchen lighting, candid documentary photography, natural body language, believable faces, dense but coherent scene.",
+  "seed": 2384524633,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.22,
+  "generated_at": "2026-09-02T01:24:12.541088+00:00"
+}
