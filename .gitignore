@@ -1,3 +1,7 @@
 # Python's little souvenirs. We don't need them in the ship's log.
 __pycache__/
 *.pyc
+
+# Review queue verdicts — a working aid, not part of the ship
+review_status.json
+review_status.json.tmp

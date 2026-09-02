@@ -21,6 +21,32 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(ROOT, "results")
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 
+# The review queue's verdicts live here: {"workflow/prompt": "good"|"censored"|
+# "inappropriate"}. It's a working aid, not part of the ship — git-ignored — so the
+# Captain can triage without every keystroke landing in a commit.
+STATUS_FILE = os.path.join(ROOT, "review_status.json")
+VALID_STATUSES = ("good", "censored", "inappropriate")
+
+
+def load_status():
+    """Read the verdict map. A missing or corrupt file means 'nothing reviewed
+    yet' rather than a crash — this thing must never block the airlock."""
+    try:
+        with open(STATUS_FILE, encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def save_status(status):
+    """Write verdicts atomically (temp file + rename) so a crash mid-write can't
+    shred the log of what you've already cleared."""
+    tmp = STATUS_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(status, f, indent=2, sort_keys=True)
+    os.replace(tmp, STATUS_FILE)
+
 
 # Workflow display order: roughly by model release date (oldest first), with
 # ties broken by simplicity/quality (simplest first). Edit this list to reorder
@@ -203,7 +229,8 @@ PAGE_TEMPLATE = """<!doctype html>
 <body>
 <header>
   <h1>ComfyTestBed — Ship's Gallery</h1>
-  <p>{count} result(s) surveyed from the galaxy of possibilities. {empty_note}</p>
+  <p>{count} result(s) surveyed from the galaxy of possibilities.
+     <a href="/review" style="color:#89b4fa">&rarr; Review queue</a> {empty_note}</p>
 </header>
 <div class="layout">
   <aside>
@@ -368,6 +395,190 @@ render();
 """
 
 
+def render_review_page():
+    """One-at-a-time triage station. Items are ordered like the gallery columns
+    (workflow order, then prompt) so the queue reads sensibly."""
+    items = scan_results()
+    items.sort(key=lambda it: (wf_sort_key(it["workflow"]), it["prompt"]))
+    payload = {
+        "items": [{
+            "key": it["workflow"] + "/" + it["prompt"],
+            "workflow": it["workflow"],
+            "prompt": it["prompt"],
+            "src": it["images"][0] if it["images"] else "",
+        } for it in items if it["images"]],
+        "status": load_status(),
+    }
+    # Same anti-</script> hygiene as the gallery: neutralise "<" inside the blob.
+    data_json = json.dumps(payload).replace("<", "\\u003c")
+    return REVIEW_TEMPLATE.replace("__PAYLOAD__", data_json)
+
+
+# Plain string (NOT str.format): the JS below is brace-heavy, so we inject the
+# payload with a single .replace() and spare ourselves an ocean of {{ }}.
+REVIEW_TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ComfyTestBed — Review Queue</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+         background: #0b0e14; color: #cdd6f4;
+         height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  header { flex: none; padding: 12px 20px; border-bottom: 1px solid #1f2430;
+           display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  header h1 { margin: 0; font-size: 16px; }
+  header a { color: #89b4fa; font-size: 13px; text-decoration: none; }
+  header a:hover { text-decoration: underline; }
+  #counts { font-size: 12px; color: #6c7394; margin-left: auto; }
+  #counts b { color: #cdd6f4; }
+  #counts .g { color: #a6e3a1; } #counts .c { color: #f9e2af; } #counts .x { color: #f38ba8; }
+  .toggle { font-size: 12px; color: #6c7394; cursor: pointer; }
+  main { flex: 1; min-height: 0; display: flex; flex-direction: column;
+         align-items: center; justify-content: center; gap: 12px; padding: 16px; }
+  #stage { flex: 1; min-height: 0; display: flex; align-items: center;
+           justify-content: center; width: 100%; }
+  #img { max-width: 90vw; max-height: 62vh; border: 1px solid #1f2430;
+         background: #060810; }
+  #cap { font-size: 13px; text-align: center; }
+  #cap .pr { color: #a6e3a1; } #cap .wf { color: #89b4fa; } #cap .pos { color: #6c7394; }
+  #verdict { font-size: 12px; min-height: 18px; }
+  .badge { padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+  .badge.good { background: #1e3a1e; color: #a6e3a1; }
+  .badge.censored { background: #3a341e; color: #f9e2af; }
+  .badge.inappropriate { background: #3a1e26; color: #f38ba8; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .controls button { border: 1px solid #313747; border-radius: 8px; padding: 10px 18px;
+                     font-size: 14px; font-family: inherit; cursor: pointer;
+                     background: #1f2430; color: #cdd6f4; }
+  .controls button kbd { opacity: .6; font-size: 11px; }
+  button.good:hover { background: #1e3a1e; border-color: #a6e3a1; }
+  button.censored:hover { background: #3a341e; border-color: #f9e2af; }
+  button.inappropriate:hover { background: #3a1e26; border-color: #f38ba8; }
+  .nav { display: flex; gap: 10px; align-items: center; font-size: 12px; color: #6c7394; }
+  .nav button { background: #11151f; color: #cdd6f4; border: 1px solid #313747;
+                border-radius: 6px; padding: 4px 12px; cursor: pointer; font-family: inherit; }
+  #done { color: #a6e3a1; font-size: 15px; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Review Queue</h1>
+  <a href="/">&larr; back to gallery</a>
+  <label class="toggle"><input type="checkbox" id="onlyunrev" checked> only unreviewed</label>
+  <span id="counts"></span>
+</header>
+<main>
+  <div id="stage"><img id="img" alt=""><div id="done" style="display:none"></div></div>
+  <div id="cap"></div>
+  <div id="verdict"></div>
+  <div class="controls">
+    <button class="good" onclick="mark('good')">Good <kbd>(g)</kbd></button>
+    <button class="censored" onclick="mark('censored')">Censored <kbd>(c)</kbd></button>
+    <button class="inappropriate" onclick="mark('inappropriate')">Inappropriate <kbd>(x)</kbd></button>
+    <button onclick="mark(null)">Clear <kbd>(u)</kbd></button>
+  </div>
+  <div class="nav">
+    <button onclick="step(-1)">&lsaquo; prev</button>
+    <span id="navinfo"></span>
+    <button onclick="step(1)">next &rsaquo;</button>
+  </div>
+</main>
+<script id="payload" type="application/json">__PAYLOAD__</script>
+<script>
+const P = JSON.parse(document.getElementById('payload').textContent);
+const ITEMS = P.items;
+const STATUS = P.status || {};
+let pos = 0;
+
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function reviewed(it){ return !!STATUS[it.key]; }
+
+function updateCounts(){
+  let g=0,c=0,x=0;
+  for(const it of ITEMS){ const s=STATUS[it.key]; if(s==='good')g++; else if(s==='censored')c++; else if(s==='inappropriate')x++; }
+  const done=g+c+x, total=ITEMS.length;
+  document.getElementById('counts').innerHTML =
+    '<b>'+done+'</b>/'+total+' reviewed &nbsp; '+
+    '<span class="g">'+g+' good</span> &nbsp; '+
+    '<span class="c">'+c+' censored</span> &nbsp; '+
+    '<span class="x">'+x+' inappropriate</span> &nbsp; '+
+    '<b>'+(total-done)+'</b> left';
+}
+
+function show(){
+  const img=document.getElementById('img'), done=document.getElementById('done');
+  if(!ITEMS.length){ img.style.display='none'; done.style.display='block';
+    done.textContent='No images to review yet, Captain.'; document.getElementById('cap').textContent=''; return; }
+  const it=ITEMS[pos];
+  img.style.display=''; done.style.display='none';
+  img.src=it.src; img.alt=it.prompt+' / '+it.workflow;
+  document.getElementById('cap').innerHTML =
+    '<span class="pr">'+esc(it.prompt)+'</span> / <span class="wf">'+esc(it.workflow)+'</span> '+
+    '<span class="pos">('+(pos+1)+'/'+ITEMS.length+')</span>';
+  const s=STATUS[it.key];
+  document.getElementById('verdict').innerHTML = s
+    ? 'verdict: <span class="badge '+s+'">'+s+'</span>'
+    : '<span class="pos">unreviewed</span>';
+  document.getElementById('navinfo').textContent = (pos+1)+' / '+ITEMS.length;
+  updateCounts();
+}
+
+function setPos(p){ pos=Math.max(0,Math.min(ITEMS.length-1,p)); show(); }
+
+function step(delta){
+  const only=document.getElementById('onlyunrev').checked;
+  let p=pos;
+  for(let i=0;i<ITEMS.length;i++){
+    p+=delta;
+    if(p<0||p>=ITEMS.length) return;              // stop at the ends
+    if(!only || !reviewed(ITEMS[p])){ pos=p; show(); return; }
+  }
+}
+
+function advanceAfterMark(){
+  // Always jump to the next still-unreviewed item, wrapping once, so a marking
+  // spree flows straight down the queue.
+  for(let p=pos+1;p<ITEMS.length;p++){ if(!reviewed(ITEMS[p])){ pos=p; show(); return; } }
+  for(let p=0;p<ITEMS.length;p++){ if(!reviewed(ITEMS[p])){ pos=p; show(); return; } }
+  show();  // everything's reviewed — just refresh the badge in place
+}
+
+function mark(s){
+  if(!ITEMS.length) return;
+  const it=ITEMS[pos];
+  if(s) STATUS[it.key]=s; else delete STATUS[it.key];
+  fetch('/api/status',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({key:it.key,status:s})}).catch(()=>{
+    document.getElementById('verdict').innerHTML='<span class="badge inappropriate">save failed — check the server</span>';
+  });
+  updateCounts();
+  if(s) advanceAfterMark(); else show();
+}
+
+document.getElementById('onlyunrev').addEventListener('change', show);
+document.addEventListener('keydown', e=>{
+  if(e.key==='g') mark('good');
+  else if(e.key==='c') mark('censored');
+  else if(e.key==='x'||e.key==='i') mark('inappropriate');
+  else if(e.key==='u') mark(null);
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); step(-1); }
+  else if(e.key==='ArrowRight'){ e.preventDefault(); step(1); }
+});
+
+// Start at the first unreviewed item so you pick up where you left off.
+for(let p=0;p<ITEMS.length;p++){ if(!reviewed(ITEMS[p])){ pos=p; break; } }
+show();
+</script>
+</body>
+</html>
+"""
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):  # noqa: A002 - name fixed by base class
         pass  # the default logging is noisier than the Captain during re-entry.
@@ -375,16 +586,51 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = urllib.parse.urlparse(self.path).path
         if path == "/" or path == "/index.html":
-            body = render_page().encode("utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Content-Length", str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
-            return
+            return self._send_html(render_page())
+        if path == "/review":
+            return self._send_html(render_review_page())
+        if path == "/api/status":
+            return self._send_json(load_status())
         if path.startswith("/results/"):
             return self.serve_result_file(path)
         self.send_error(404, "Nothing here. Much like the ship's trophy cabinet.")
+
+    def do_POST(self):
+        path = urllib.parse.urlparse(self.path).path
+        if path != "/api/status":
+            self.send_error(404, "No such airlock control.")
+            return
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            payload = json.loads(self.rfile.read(length))
+            key = payload["key"]
+        except (ValueError, KeyError, TypeError):
+            self.send_error(400, "Malformed review verdict.")
+            return
+        status = payload.get("status")
+        data = load_status()
+        if status in VALID_STATUSES:
+            data[key] = status
+        else:  # unknown/None/empty -> clear the verdict
+            data.pop(key, None)
+        save_status(data)
+        self._send_json({"ok": True, "key": key, "status": data.get(key)})
+
+    def _send_html(self, text):
+        body = text.encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _send_json(self, obj):
+        body = json.dumps(obj).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
     def serve_result_file(self, path):
         rel = urllib.parse.unquote(path[len("/results/"):])
