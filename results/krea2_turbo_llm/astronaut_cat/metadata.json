@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo_llm",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 579297908,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 49.01,
+  "generated_at": "2026-09-02T02:01:35.574932+00:00"
+}

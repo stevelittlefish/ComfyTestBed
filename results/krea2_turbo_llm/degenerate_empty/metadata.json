@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo_llm",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 3806859051,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 27.51,
+  "generated_at": "2026-09-02T02:02:58.377968+00:00"
+}

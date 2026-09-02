@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo",
+  "prompt": "scifi_excavation",
+  "prompt_text": "A lone astronaut standing at the edge of an enormous excavation site on an alien moon, looking down into a buried machine several kilometres wide. Only part of the ancient structure has been uncovered: black metallic ribs, impossible geometric chambers, faint amber lights deep below. Construction vehicles and tiny workers give a sense of scale. Hard sunlight, long shadows, dust in the air, extremely realistic materials, serious hard-science-fiction film still, no fantasy magic.",
+  "seed": 736336561,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 17.35,
+  "generated_at": "2026-09-02T01:58:28.909569+00:00"
+}
