@@ -42,6 +42,9 @@ Always refer to this policy by its proper title: **raw-dog-3000**.
   explicitly orders one.
 - **Images are different.** Before committing generated images, **check in with the
   Captain first** — we may want to regenerate them rather than commit what we have.
+- **Push after every commit.** There is no point hoarding this magnificent software
+  to ourselves. Commit, then `git push` immediately, so the citizens of the galaxy
+  may be enlightened by our wonderful slop at the earliest opportunity.
 - **Never rewrite history.** No `rebase`, no `--amend`, no force-push, no history
   surgery of any kind. History is append-only.
 - **Fix forward, always.** Committed something broken? Good. Add another commit that
