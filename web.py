@@ -27,6 +27,7 @@ IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 # the gallery columns and sidebar. Any workflow not listed here sorts to the end,
 # alphabetically — so new imports show up without breaking anything.
 WORKFLOW_ORDER = [
+    "sd15",                 # SD 1.5 (v1-5-pruned-emaonly) — Oct 2022 (eldest)
     "SDXL",                 # SD XL base 1.0 — Jul 2023
     "Flux_Schnell_Simple",  # FLUX.1 schnell — Aug 2024
     "z_image_turbo_int8",   # Z-Image Turbo — 2025
