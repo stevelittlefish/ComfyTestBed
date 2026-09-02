@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 4088210266,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.4,
+  "generated_at": "2026-09-02T00:54:48.815947+00:00"
+}
