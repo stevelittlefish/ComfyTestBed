@@ -71,7 +71,6 @@ WORKFLOW_ORDER = [
     "z_image",              # Z-Image base (bf16) — 2025 (fuller, after turbo)
     "krea2_turbo",          # Krea2 turbo — 2025 (plain)
     "krea2_turbo_llm",      # Krea2 turbo — 2025 (+ LLM prompt rewrite; more complex)
-    "krea2_raw",            # Krea2 raw/base — 2025 (undistilled, 52-step; fuller, after turbo)
     "qwen_image",           # Qwen-Image — 2025
     "flux2_klein_9b",       # FLUX.2 Klein — Nov 2025 (newest)
 ]
