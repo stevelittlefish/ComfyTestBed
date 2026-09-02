@@ -5,3 +5,7 @@ __pycache__/
 # Review queue verdicts — a working aid, not part of the ship
 review_status.json
 review_status.json.tmp
+
+# Runtime logs — noise, not cargo
+render_run.log
+web_server.log
