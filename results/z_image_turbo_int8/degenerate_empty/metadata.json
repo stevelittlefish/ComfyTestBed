@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 779987180,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.33,
+  "generated_at": "2026-09-02T01:04:40.971511+00:00"
+}

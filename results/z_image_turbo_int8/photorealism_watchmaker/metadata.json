@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "photorealism_watchmaker",
+  "prompt_text": "A candid documentary photograph of an elderly Japanese watchmaker repairing a mechanical wristwatch at a cluttered wooden workbench. Tiny brass gears, screwdrivers, magnifying lenses, handwritten notes, warm tungsten desk lamp, cool daylight from a side window, realistic skin texture, subtle wrinkles, worn fingertips, shallow depth of field, natural imperfections, 50mm photography, no glamour retouching.",
+  "seed": 397484901,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.14,
+  "generated_at": "2026-09-02T01:04:56.696637+00:00"
+}

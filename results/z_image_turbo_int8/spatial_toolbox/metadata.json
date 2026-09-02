@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "spatial_toolbox",
+  "prompt_text": "A red ceramic mug sits on top of a closed green toolbox. The toolbox is underneath a wooden workbench. A yellow screwdriver leans against the right side of the toolbox. On the left side of the floor is a folded blue cloth. Nothing else is touching these objects. Clean workshop lighting, realistic photography, clearly readable composition.",
+  "seed": 3826826505,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.39,
+  "generated_at": "2026-09-02T01:05:12.594847+00:00"
+}
