@@ -1,0 +1,11 @@
+{
+  "workflow": "Flux_Schnell_Simple",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 1375835798,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 7.17,
+  "generated_at": "2026-09-02T01:17:53.027265+00:00"
+}

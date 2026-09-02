@@ -40,7 +40,7 @@
   },
   "5": {
     "inputs": {
-      "width": 768,
+      "width": 1024,
       "height": 1024,
       "batch_size": 1
     },
