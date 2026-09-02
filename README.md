@@ -55,6 +55,12 @@ dependencies. If a feature ever needs a third-party package, we rewrite it in Go
    `metadata.json` recording the prompt text, seed, image list, generation time,
    and timestamp.
 
+   The runner processes **all prompts for one workflow consecutively**, and fires a
+   single **discarded warm-up render** before each workflow's real prompts. This
+   loads the model into VRAM so the first real render's timing isn't inflated by
+   cold-start loading — making `generation_seconds` fair across models. The warm-up
+   prompt is deliberately ridiculous and is never saved.
+
 5. **Browse.** Launch the gallery:
 
    ```bash

@@ -36,6 +36,24 @@ def holly(msg):
     print(msg, flush=True)
 
 
+# Warm-up prompts. Before generating a workflow's real prompts, we fire one of
+# these to load the model into VRAM so the first *real* render isn't unfairly
+# saddled with cold-start loading time. The result is discarded, unloved, and
+# never spoken of again — so it may as well be spectacularly stupid.
+WARMUP_PROMPTS = [
+    "a majestic potato in a captain's uniform commanding a rusty spaceship, "
+    "heroic oil painting, dramatic god rays",
+    "a Nissan Micra achieving faster-than-light travel purely through sheer "
+    "embarrassment, long exposure",
+    "a smug seagull piloting a shopping trolley through deep space, "
+    "renaissance fresco",
+    "the platonic ideal of a lukewarm cup of tea, brooding cinematic lighting",
+    "an existentially exhausted ship's computer, depicted as a disembodied face "
+    "made entirely of duct tape and regret",
+    "a heroic portrait of a single confused pigeon operating a nuclear reactor",
+]
+
+
 def load_config():
     if not os.path.exists(CONFIG_PATH):
         holly("There's no config.toml. I can't talk to a server I don't know about. "
@@ -147,6 +165,17 @@ def collect_images(base, history_entry):
     return images
 
 
+def generate(base, raw_workflow, cfg, prompt_text, client_id, timeout):
+    """Fill placeholders, submit, wait, and fetch the images. Returns
+    (images, seed, elapsed_seconds). Raises on anything going wrong so the
+    caller can decide whether to mourn or move on."""
+    started = time.time()
+    workflow_json, seed = fill_placeholders(raw_workflow, cfg, prompt_text)
+    _, history_entry = submit_and_wait(base, workflow_json, client_id, timeout)
+    images = collect_images(base, history_entry)
+    return images, seed, time.time() - started
+
+
 def run(force=False, list_only=False):
     cfg = load_config()
     server = cfg.get("server", {})
@@ -193,58 +222,80 @@ def run(force=False, list_only=False):
     client_id = str(uuid.uuid4())
     done = 0
     failed = 0
+    step = 0
 
+    # Group the plan by workflow so we do every prompt for a model consecutively,
+    # rather than thrashing between models and reloading VRAM like a lunatic.
+    by_workflow = {}
     for wf, pr in plan:
-        prompt_text = prompts[pr]
-        holly(f"[{done + failed + 1}/{len(plan)}] Plotting course: {wf} / {pr} ...")
-        started = time.time()
+        by_workflow.setdefault(wf, []).append(pr)
+
+    for wf, pending in by_workflow.items():
+        # Warm-up: fire one throwaway render to load the model, so the first real
+        # prompt's timing isn't inflated by cold-start loading. We discard it.
+        warmup = random.choice(WARMUP_PROMPTS)
+        holly(f"== {wf}: warming up the render core with something regrettable ==")
+        holly(f"   (warm-up, discarded: \"{warmup}\")")
         try:
-            workflow_json, seed = fill_placeholders(workflows[wf], cfg, prompt_text)
-            _, history_entry = submit_and_wait(base, workflow_json, client_id, timeout)
-            images = collect_images(base, history_entry)
+            generate(base, workflows[wf], cfg, warmup, client_id, timeout)
+            holly("   Warm-up complete. That image is now lost to history. You're welcome.")
         except urllib.error.URLError as e:
-            failed += 1
-            holly(f"    Couldn't reach the engine core at {base}. Is ComfyUI actually "
-                  f"running? ({e}). Skipping.")
+            failed += len(pending)
+            holly(f"   Couldn't reach the engine core at {base} ({e}). Is ComfyUI "
+                  f"running? Skipping all {len(pending)} prompt(s) for {wf}.")
             continue
-        except Exception as e:  # noqa: BLE001 - we genuinely want to survive anything
-            failed += 1
-            holly(f"    That went about as well as the ship's last MOT: {e}. Skipping.")
-            continue
+        except Exception as e:  # noqa: BLE001
+            holly(f"   Warm-up went sideways ({e}). Pressing on regardless; the first "
+                  "real timing may be a bit generous.")
 
-        elapsed = time.time() - started
+        for pr in pending:
+            step += 1
+            prompt_text = prompts[pr]
+            holly(f"[{step}/{len(plan)}] Plotting course: {wf} / {pr} ...")
+            try:
+                images, seed, elapsed = generate(
+                    base, workflows[wf], cfg, prompt_text, client_id, timeout)
+            except urllib.error.URLError as e:
+                failed += 1
+                holly(f"    Couldn't reach the engine core at {base}. Is ComfyUI actually "
+                      f"running? ({e}). Skipping.")
+                continue
+            except Exception as e:  # noqa: BLE001 - we genuinely want to survive anything
+                failed += 1
+                holly(f"    That went about as well as the ship's last MOT: {e}. Skipping.")
+                continue
 
-        if not images:
-            failed += 1
-            holly("    ComfyUI finished but produced no images. A bold artistic "
-                  "statement. Skipping.")
-            continue
+            if not images:
+                failed += 1
+                holly("    ComfyUI finished but produced no images. A bold artistic "
+                      "statement. Skipping.")
+                continue
 
-        d = result_dir(wf, pr)
-        os.makedirs(d, exist_ok=True)
-        saved = []
-        for i, (fname, data) in enumerate(images):
-            ext = os.path.splitext(fname)[1] or ".png"
-            out_name = "image" + ext if len(images) == 1 else f"image_{i}{ext}"
-            with open(os.path.join(d, out_name), "wb") as f:
-                f.write(data)
-            saved.append(out_name)
+            d = result_dir(wf, pr)
+            os.makedirs(d, exist_ok=True)
+            saved = []
+            for i, (fname, data) in enumerate(images):
+                ext = os.path.splitext(fname)[1] or ".png"
+                out_name = "image" + ext if len(images) == 1 else f"image_{i}{ext}"
+                with open(os.path.join(d, out_name), "wb") as f:
+                    f.write(data)
+                saved.append(out_name)
 
-        meta = {
-            "workflow": wf,
-            "prompt": pr,
-            "prompt_text": prompt_text,
-            "seed": seed,
-            "images": saved,
-            "generation_seconds": round(elapsed, 2),
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-        }
-        with open(os.path.join(d, "metadata.json"), "w", encoding="utf-8") as f:
-            json.dump(meta, f, indent=2)
+            meta = {
+                "workflow": wf,
+                "prompt": pr,
+                "prompt_text": prompt_text,
+                "seed": seed,
+                "images": saved,
+                "generation_seconds": round(elapsed, 2),
+                "generated_at": datetime.now(timezone.utc).isoformat(),
+            }
+            with open(os.path.join(d, "metadata.json"), "w", encoding="utf-8") as f:
+                json.dump(meta, f, indent=2)
 
-        done += 1
-        holly(f"    Done in {elapsed:.1f}s. {len(saved)} image(s). "
-              "Another triumph of automation over the man at the wheel.")
+            done += 1
+            holly(f"    Done in {elapsed:.1f}s. {len(saved)} image(s). "
+                  "Another triumph of automation over the man at the wheel.")
 
     holly(f"Finished. {done} generated, {failed} failed. "
           + ("Not bad for a ship held together with hope." if failed == 0
