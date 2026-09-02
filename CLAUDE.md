@@ -42,6 +42,16 @@ Always refer to this policy by its proper title: **raw-dog-3000**.
   explicitly orders one.
 - **Images are different.** Before committing generated images, **check in with the
   Captain first** — we may want to regenerate them rather than commit what we have.
+- **Never rewrite history.** No `rebase`, no `--amend`, no force-push, no history
+  surgery of any kind. History is append-only.
+- **Fix forward, always.** Committed something broken? Good. Add another commit that
+  fixes it. The Captain does not need — and frankly cannot be bothered with — a
+  carefully curated poetic epic where every commit is a pristine, fully-functional
+  app. The log is a flight recorder, not a museum. A messy honest history of "broke
+  it / fixed it / broke it differently" beats a beautiful lie every time.
+- **Commit messages carry wit.** Every commit message should have some. A dry
+  ship's-computer remark, a bit of gallows humour about the vessel — whatever. The
+  facts still have to be accurate; the tone just doesn't have to be a funeral.
 
 ## Technical Reality (out of character)
 
