@@ -30,7 +30,7 @@ WORKFLOW_ORDER = [
     "sd15",                 # SD 1.5 (v1-5-pruned-emaonly) — Oct 2022 (eldest)
     "sd21",                 # SD 2.1 (v2-1_768-ema-pruned) — Dec 2022
     "SDXL",                 # SD XL base 1.0 — Jul 2023
-    "Flux_Schnell_Simple",  # FLUX.1 schnell — Aug 2024
+    "Flux_Schnell",         # FLUX.1 schnell — Aug 2024
     "z_image_turbo_int8",   # Z-Image Turbo — 2025
     "krea2_turbo",          # Krea2 turbo — 2025 (plain)
     "krea2_turbo_llm",      # Krea2 turbo — 2025 (+ LLM prompt rewrite; more complex)
