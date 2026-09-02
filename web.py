@@ -276,6 +276,7 @@ function selected(cls) {{
 }}
 function setAll(cls, on) {{
   document.querySelectorAll('.' + cls).forEach(c => c.checked = on);
+  saveFilters();
   render();
 }}
 // Lightbox state: the current row's images (same prompt, across the visible
@@ -376,7 +377,27 @@ function render() {{
   main.innerHTML = '';
   main.appendChild(table);
 }}
-document.querySelectorAll('.wf, .pr').forEach(c => c.addEventListener('change', render));
+// Persist filter state across refreshes. We store the *unchecked* boxes per
+// class, so a freshly-imported workflow/prompt (unknown to storage) still
+// defaults to visible rather than hiding itself the moment it appears.
+const FILTER_KEY = 'comfytestbed.filters';
+function saveFilters() {{
+  const off = {{}};
+  ['wf', 'pr'].forEach(cls => {{
+    off[cls] = [...document.querySelectorAll('.' + cls + ':not(:checked)')].map(c => c.value);
+  }});
+  try {{ localStorage.setItem(FILTER_KEY, JSON.stringify(off)); }} catch (e) {{}}
+}}
+function restoreFilters() {{
+  let off;
+  try {{ off = JSON.parse(localStorage.getItem(FILTER_KEY) || '{{}}'); }} catch (e) {{ return; }}
+  if (!off) return;
+  ['wf', 'pr'].forEach(cls => {{
+    const hide = new Set(off[cls] || []);
+    document.querySelectorAll('.' + cls).forEach(c => {{ if (hide.has(c.value)) c.checked = false; }});
+  }});
+}}
+document.querySelectorAll('.wf, .pr').forEach(c => c.addEventListener('change', () => {{ saveFilters(); render(); }}));
 
 // Lightbox controls: buttons, backdrop-to-close, and arrow keys.
 document.getElementById('lbprev').addEventListener('click', e => {{ e.stopPropagation(); lbStep(-1); }});
@@ -389,6 +410,7 @@ document.addEventListener('keydown', e => {{
   else if (e.key === 'ArrowRight') {{ e.preventDefault(); lbStep(1); }}
   else if (e.key === 'Escape') {{ lbClose(); }}
 }});
+restoreFilters();
 render();
 </script>
 </body>
