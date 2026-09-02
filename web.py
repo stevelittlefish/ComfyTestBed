@@ -67,7 +67,8 @@ WORKFLOW_ORDER = [
     "flux_dev",             # FLUX.1 dev — Aug 2024 (fuller, after schnell)
     "sd35_large_turbo",     # SD 3.5 Large Turbo — Oct 2024
     "chroma",               # Chroma — 2025
-    "z_image_turbo_int8",   # Z-Image Turbo — 2025
+    "z_image_turbo_int8",   # Z-Image Turbo — 2025 (distilled, simplest)
+    "z_image",              # Z-Image base (bf16) — 2025 (fuller, after turbo)
     "krea2_turbo",          # Krea2 turbo — 2025 (plain)
     "krea2_turbo_llm",      # Krea2 turbo — 2025 (+ LLM prompt rewrite; more complex)
     "qwen_image",           # Qwen-Image — 2025
