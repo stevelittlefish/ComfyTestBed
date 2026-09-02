@@ -22,6 +22,29 @@ RESULTS_DIR = os.path.join(ROOT, "results")
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 
 
+# Workflow display order: roughly by model release date (oldest first), with
+# ties broken by simplicity/quality (simplest first). Edit this list to reorder
+# the gallery columns and sidebar. Any workflow not listed here sorts to the end,
+# alphabetically — so new imports show up without breaking anything.
+WORKFLOW_ORDER = [
+    "SDXL",                 # SD XL base 1.0 — Jul 2023
+    "Flux_Schnell_Simple",  # FLUX.1 schnell — Aug 2024
+    "z_image_turbo_int8",   # Z-Image Turbo — 2025
+    "krea2_turbo",          # Krea2 turbo — 2025 (plain)
+    "krea2_turbo_llm",      # Krea2 turbo — 2025 (+ LLM prompt rewrite; more complex)
+    "flux2_klein_9b",       # FLUX.2 Klein — Nov 2025 (newest)
+]
+
+
+def wf_sort_key(name):
+    """Sort by position in WORKFLOW_ORDER; unlisted workflows go to the end,
+    alphabetically. Returns a tuple so Python's stable sort does the rest."""
+    try:
+        return (0, WORKFLOW_ORDER.index(name), "")
+    except ValueError:
+        return (1, 0, name)
+
+
 def scan_results():
     """Walk results/<workflow>/<prompt>/ and gather what we've got.
 
@@ -63,7 +86,7 @@ def scan_results():
 
 def render_page():
     items = scan_results()
-    workflows = sorted({it["workflow"] for it in items})
+    workflows = sorted({it["workflow"] for it in items}, key=wf_sort_key)
     prompts = sorted({it["prompt"] for it in items})
 
     # Embed JSON in a <script>. Inside a script element the browser does NOT
@@ -87,6 +110,7 @@ def render_page():
     return PAGE_TEMPLATE.format(
         data=data_json, wf_opts=wf_opts, pr_opts=pr_opts,
         empty_note=empty_note, count=len(items),
+        wf_order=json.dumps(WORKFLOW_ORDER),
     )
 
 
@@ -99,14 +123,18 @@ PAGE_TEMPLATE = """<!doctype html>
 <style>
   :root {{ color-scheme: dark; }}
   * {{ box-sizing: border-box; }}
+  /* Full-height column layout so the matrix area scrolls internally and its
+     sticky headers actually stick, instead of the whole window scrolling. */
+  html, body {{ height: 100%; }}
   body {{ margin: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-         background: #0b0e14; color: #cdd6f4; }}
-  header {{ padding: 16px 20px; border-bottom: 1px solid #1f2430; }}
+         background: #0b0e14; color: #cdd6f4;
+         height: 100vh; display: flex; flex-direction: column; overflow: hidden; }}
+  header {{ flex: none; padding: 16px 20px; border-bottom: 1px solid #1f2430; }}
   header h1 {{ margin: 0; font-size: 18px; }}
   header p {{ margin: 4px 0 0; color: #6c7394; font-size: 13px; }}
-  .layout {{ display: flex; align-items: flex-start; }}
-  aside {{ width: 240px; padding: 16px 20px; border-right: 1px solid #1f2430;
-          position: sticky; top: 0; max-height: 100vh; overflow: auto; }}
+  .layout {{ flex: 1; min-height: 0; display: flex; align-items: stretch; }}
+  aside {{ width: 240px; flex: none; padding: 16px 20px;
+          border-right: 1px solid #1f2430; overflow: auto; }}
   aside h2 {{ font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
              color: #6c7394; margin: 18px 0 8px; }}
   aside label {{ display: block; font-size: 13px; padding: 2px 0; cursor: pointer; }}
@@ -164,6 +192,13 @@ PAGE_TEMPLATE = """<!doctype html>
 <script id="payload" type="application/json">{data}</script>
 <script>
 const DATA = JSON.parse(document.getElementById('payload').textContent);
+// Workflow column order: release date, ties simplest-first (see WORKFLOW_ORDER).
+const WF_ORDER = {wf_order};
+function wfKey(w) {{ const i = WF_ORDER.indexOf(w); return i < 0 ? [1, 0, w] : [0, i, '']; }}
+function wfCmp(a, b) {{
+  const ka = wfKey(a), kb = wfKey(b);
+  return ka[0] - kb[0] || ka[1] - kb[1] || (ka[2] < kb[2] ? -1 : ka[2] > kb[2] ? 1 : 0);
+}}
 
 // Index the flat result list into lookup[prompt][workflow] = item, and gather
 // the full sorted axes so empty cells still show up as gaps in the matrix.
@@ -187,7 +222,7 @@ function openLightbox(src) {{
 }}
 function render() {{
   const wfSel = selected('wf'), prSel = selected('pr');
-  const cols = [...ALL_WF].sort().filter(w => wfSel.has(w));
+  const cols = [...ALL_WF].sort(wfCmp).filter(w => wfSel.has(w));
   const rows = [...ALL_PR].sort().filter(p => prSel.has(p));
   const main = document.getElementById('main');
 
