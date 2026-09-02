@@ -1,0 +1,11 @@
+{
+  "workflow": "flux_dev",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 1784649152,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.33,
+  "generated_at": "2026-09-02T03:03:09.570088+00:00"
+}

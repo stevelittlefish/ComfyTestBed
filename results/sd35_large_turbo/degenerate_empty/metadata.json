@@ -1,0 +1,11 @@
+{
+  "workflow": "sd35_large_turbo",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 2465323690,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.15,
+  "generated_at": "2026-09-02T03:33:03.261184+00:00"
+}

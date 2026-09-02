@@ -1,0 +1,11 @@
+{
+  "workflow": "flux_dev",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 3577057831,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.7,
+  "generated_at": "2026-09-02T03:04:56.576833+00:00"
+}

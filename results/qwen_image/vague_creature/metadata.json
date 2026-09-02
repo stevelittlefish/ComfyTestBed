@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 1357865961,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 58.17,
+  "generated_at": "2026-09-02T03:31:12.429358+00:00"
+}

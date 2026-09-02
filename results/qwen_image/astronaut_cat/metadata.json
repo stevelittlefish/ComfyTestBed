@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 432719137,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 57.95,
+  "generated_at": "2026-09-02T03:13:47.338158+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "chroma",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 3860553064,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 61.75,
+  "generated_at": "2026-09-02T03:00:52.031781+00:00"
+}
