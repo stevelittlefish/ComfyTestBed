@@ -177,7 +177,20 @@ PAGE_TEMPLATE = """<!doctype html>
   .empty {{ color: #6c7394; padding: 24px; }}
   #lb {{ position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none;
         align-items: center; justify-content: center; cursor: zoom-out; z-index: 50; }}
-  #lb img {{ max-width: 94vw; max-height: 94vh; }}
+  #lbfig {{ margin: 0; display: flex; flex-direction: column; align-items: center;
+           gap: 8px; cursor: default; }}
+  #lbimg {{ max-width: 82vw; max-height: 86vh; }}
+  #lbcap {{ font-size: 13px; color: #cdd6f4; text-align: center; }}
+  #lbcap .wf {{ color: #89b4fa; }}
+  #lbcap .pr {{ color: #a6e3a1; }}
+  #lbcap .pos {{ color: #6c7394; }}
+  .lbnav {{ position: fixed; top: 50%; transform: translateY(-50%);
+           background: rgba(31,36,48,.7); color: #cdd6f4; border: 1px solid #313747;
+           border-radius: 50%; width: 48px; height: 48px; font-size: 26px;
+           line-height: 1; cursor: pointer; user-select: none; z-index: 51; }}
+  .lbnav:hover {{ background: rgba(49,55,71,.9); }}
+  #lbprev {{ left: 16px; }}
+  #lbnext {{ right: 16px; }}
 </style>
 </head>
 <body>
@@ -198,7 +211,11 @@ PAGE_TEMPLATE = """<!doctype html>
   </aside>
   <main id="main"></main>
 </div>
-<div id="lb" onclick="this.style.display='none'"><img id="lbimg" alt=""></div>
+<div id="lb">
+  <button id="lbprev" class="lbnav" aria-label="Previous (left arrow)">&lsaquo;</button>
+  <figure id="lbfig"><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+  <button id="lbnext" class="lbnav" aria-label="Next (right arrow)">&rsaquo;</button>
+</div>
 <script id="payload" type="application/json">{data}</script>
 <script>
 const DATA = JSON.parse(document.getElementById('payload').textContent);
@@ -226,10 +243,30 @@ function setAll(cls, on) {{
   document.querySelectorAll('.' + cls).forEach(c => c.checked = on);
   render();
 }}
-function openLightbox(src) {{
-  document.getElementById('lbimg').src = src;
-  document.getElementById('lb').style.display = 'flex';
+// Lightbox state: the current row's images (same prompt, across the visible
+// workflow columns, in order) plus which one we're looking at.
+let LB = {{ items: [], idx: 0 }};
+function lbShow() {{
+  const it = LB.items[LB.idx];
+  if (!it) return;
+  document.getElementById('lbimg').src = it.src;
+  document.getElementById('lbcap').innerHTML =
+    '<span class="pr">' + esc(it.prompt) + '</span> / ' +
+    '<span class="wf">' + esc(it.workflow) + '</span> ' +
+    '<span class="pos">(' + (LB.idx + 1) + '/' + LB.items.length + ')</span>';
 }}
+function openLightbox(items, idx) {{
+  LB.items = items; LB.idx = idx;
+  document.getElementById('lb').style.display = 'flex';
+  lbShow();
+}}
+function lbStep(delta) {{
+  if (!LB.items.length) return;
+  LB.idx = (LB.idx + delta + LB.items.length) % LB.items.length;  // wrap around
+  lbShow();
+}}
+function lbClose() {{ document.getElementById('lb').style.display = 'none'; }}
+function esc(s) {{ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }}
 function render() {{
   const wfSel = selected('wf'), prSel = selected('pr');
   const cols = [...ALL_WF].sort(wfCmp).filter(w => wfSel.has(w));
@@ -268,6 +305,9 @@ function render() {{
     rh.textContent = p;
     rh.title = p;
     tr.appendChild(rh);
+    // Collect this row's images (visible columns, in order) so the lightbox can
+    // page prev/next through the same prompt across workflows.
+    const rowItems = [];
     for (const w of cols) {{
       const td = document.createElement('td');
       td.className = 'cell';
@@ -275,11 +315,13 @@ function render() {{
       if (it && it.images.length) {{
         const src = it.images[0];
         const secs = it.meta.generation_seconds;
+        const myIdx = rowItems.length;
+        rowItems.push({{ src: src, workflow: w, prompt: p }});
         const wrap = document.createElement('div');
         wrap.className = 'cellwrap';
         const img = document.createElement('img');
         img.loading = 'lazy'; img.src = src; img.alt = p + ' / ' + w;
-        img.addEventListener('click', () => openLightbox(src));
+        img.addEventListener('click', () => openLightbox(rowItems, myIdx));
         wrap.appendChild(img);
         if (secs != null) {{
           const t = document.createElement('span');
@@ -300,6 +342,18 @@ function render() {{
   main.appendChild(table);
 }}
 document.querySelectorAll('.wf, .pr').forEach(c => c.addEventListener('change', render));
+
+// Lightbox controls: buttons, backdrop-to-close, and arrow keys.
+document.getElementById('lbprev').addEventListener('click', e => {{ e.stopPropagation(); lbStep(-1); }});
+document.getElementById('lbnext').addEventListener('click', e => {{ e.stopPropagation(); lbStep(1); }});
+document.getElementById('lbfig').addEventListener('click', e => e.stopPropagation());
+document.getElementById('lb').addEventListener('click', lbClose);
+document.addEventListener('keydown', e => {{
+  if (document.getElementById('lb').style.display !== 'flex') return;
+  if (e.key === 'ArrowLeft') {{ e.preventDefault(); lbStep(-1); }}
+  else if (e.key === 'ArrowRight') {{ e.preventDefault(); lbStep(1); }}
+  else if (e.key === 'Escape') {{ lbClose(); }}
+}});
 render();
 </script>
 </body>
