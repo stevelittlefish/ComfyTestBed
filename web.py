@@ -113,17 +113,29 @@ PAGE_TEMPLATE = """<!doctype html>
   aside .btnrow {{ margin-top: 8px; }}
   aside button {{ background: #1f2430; color: #cdd6f4; border: 1px solid #313747;
                  border-radius: 6px; padding: 4px 8px; font-size: 12px; cursor: pointer; }}
-  main {{ flex: 1; padding: 16px 20px; }}
-  .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-          gap: 16px; }}
-  .card {{ background: #11151f; border: 1px solid #1f2430; border-radius: 10px;
-          overflow: hidden; }}
-  .card img {{ width: 100%; display: block; aspect-ratio: 1; object-fit: cover;
-              background: #060810; cursor: zoom-in; }}
-  .card .cap {{ padding: 8px 10px; font-size: 12px; }}
-  .card .cap .wf {{ color: #89b4fa; }}
-  .card .cap .pr {{ color: #a6e3a1; }}
-  .card .cap .time {{ color: #6c7394; }}
+  main {{ flex: 1; padding: 16px 20px; min-width: 0; overflow: auto; }}
+  /* The comparison matrix: prompts down the rows, workflows across the columns. */
+  table.matrix {{ border-collapse: separate; border-spacing: 0; }}
+  table.matrix th, table.matrix td {{ padding: 6px; border: 1px solid #1f2430; }}
+  /* Column headers (workflows) stick to the top; the corner and row headers stick left. */
+  table.matrix thead th {{ position: sticky; top: 0; z-index: 3; background: #11151f;
+                          color: #89b4fa; font-size: 13px; white-space: nowrap;
+                          vertical-align: bottom; }}
+  table.matrix tbody th {{ position: sticky; left: 0; z-index: 2; background: #11151f;
+                          color: #a6e3a1; font-size: 12px; text-align: right;
+                          white-space: nowrap; max-width: 220px; overflow: hidden;
+                          text-overflow: ellipsis; }}
+  table.matrix thead th.corner {{ left: 0; z-index: 4; color: #6c7394; }}
+  td.cell {{ width: 200px; height: 200px; background: #060810; text-align: center;
+            vertical-align: middle; }}
+  td.cell img {{ width: 200px; height: 200px; object-fit: cover; display: block;
+                cursor: zoom-in; }}
+  td.cell .missing {{ color: #45495c; font-size: 12px; }}
+  td.cell .time {{ display: block; font-size: 10px; color: #6c7394; margin-top: 2px; }}
+  .cellwrap {{ position: relative; }}
+  .cellwrap .time {{ position: absolute; bottom: 0; left: 0; right: 0;
+                    background: rgba(6,8,16,.7); color: #cdd6f4; font-size: 10px;
+                    padding: 1px 0; }}
   .empty {{ color: #6c7394; padding: 24px; }}
   #lb {{ position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none;
         align-items: center; justify-content: center; cursor: zoom-out; z-index: 50; }}
@@ -146,12 +158,21 @@ PAGE_TEMPLATE = """<!doctype html>
     <div class="btnrow"><button onclick="setAll('pr', true)">all</button>
       <button onclick="setAll('pr', false)">none</button></div>
   </aside>
-  <main><div class="grid" id="grid"></div></main>
+  <main id="main"></main>
 </div>
 <div id="lb" onclick="this.style.display='none'"><img id="lbimg" alt=""></div>
 <script id="payload" type="application/json">{data}</script>
 <script>
 const DATA = JSON.parse(document.getElementById('payload').textContent);
+
+// Index the flat result list into lookup[prompt][workflow] = item, and gather
+// the full sorted axes so empty cells still show up as gaps in the matrix.
+const LOOKUP = {{}};
+const ALL_WF = new Set(), ALL_PR = new Set();
+for (const it of DATA) {{
+  ALL_WF.add(it.workflow); ALL_PR.add(it.prompt);
+  (LOOKUP[it.prompt] = LOOKUP[it.prompt] || {{}})[it.workflow] = it;
+}}
 
 function selected(cls) {{
   return new Set([...document.querySelectorAll('.' + cls + ':checked')].map(c => c.value));
@@ -160,35 +181,79 @@ function setAll(cls, on) {{
   document.querySelectorAll('.' + cls).forEach(c => c.checked = on);
   render();
 }}
-function render() {{
-  const wf = selected('wf'), pr = selected('pr');
-  const grid = document.getElementById('grid');
-  grid.innerHTML = '';
-  let shown = 0;
-  for (const it of DATA) {{
-    if (!wf.has(it.workflow) || !pr.has(it.prompt)) continue;
-    for (const src of it.images) {{
-      shown++;
-      const secs = it.meta.generation_seconds;
-      const t = (secs != null) ? secs + 's' : '';
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML =
-        '<img loading="lazy" src="' + src + '" alt="">' +
-        '<div class="cap"><span class="wf">' + esc(it.workflow) + '</span> / ' +
-        '<span class="pr">' + esc(it.prompt) + '</span> ' +
-        '<span class="time">' + t + '</span></div>';
-      card.querySelector('img').addEventListener('click', () => {{
-        document.getElementById('lbimg').src = src;
-        document.getElementById('lb').style.display = 'flex';
-      }});
-      grid.appendChild(card);
-    }}
-  }}
-  if (shown === 0) grid.innerHTML =
-    '<p class="empty">Nothing matches those filters. Bold curatorial choice.</p>';
+function openLightbox(src) {{
+  document.getElementById('lbimg').src = src;
+  document.getElementById('lb').style.display = 'flex';
 }}
-function esc(s) {{ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }}
+function render() {{
+  const wfSel = selected('wf'), prSel = selected('pr');
+  const cols = [...ALL_WF].sort().filter(w => wfSel.has(w));
+  const rows = [...ALL_PR].sort().filter(p => prSel.has(p));
+  const main = document.getElementById('main');
+
+  if (!cols.length || !rows.length) {{
+    main.innerHTML = '<p class="empty">Nothing matches those filters. ' +
+                     'Bold curatorial choice.</p>';
+    return;
+  }}
+
+  const table = document.createElement('table');
+  table.className = 'matrix';
+
+  // Header row: a corner cell, then one column per workflow.
+  const thead = document.createElement('thead');
+  const hr = document.createElement('tr');
+  const corner = document.createElement('th');
+  corner.className = 'corner';
+  corner.textContent = 'prompt \\\\ workflow';
+  hr.appendChild(corner);
+  for (const w of cols) {{
+    const th = document.createElement('th');
+    th.textContent = w;
+    hr.appendChild(th);
+  }}
+  thead.appendChild(hr);
+  table.appendChild(thead);
+
+  // Body: one row per prompt, one image cell per workflow.
+  const tbody = document.createElement('tbody');
+  for (const p of rows) {{
+    const tr = document.createElement('tr');
+    const rh = document.createElement('th');
+    rh.textContent = p;
+    rh.title = p;
+    tr.appendChild(rh);
+    for (const w of cols) {{
+      const td = document.createElement('td');
+      td.className = 'cell';
+      const it = (LOOKUP[p] || {{}})[w];
+      if (it && it.images.length) {{
+        const src = it.images[0];
+        const secs = it.meta.generation_seconds;
+        const wrap = document.createElement('div');
+        wrap.className = 'cellwrap';
+        const img = document.createElement('img');
+        img.loading = 'lazy'; img.src = src; img.alt = p + ' / ' + w;
+        img.addEventListener('click', () => openLightbox(src));
+        wrap.appendChild(img);
+        if (secs != null) {{
+          const t = document.createElement('span');
+          t.className = 'time'; t.textContent = secs + 's';
+          wrap.appendChild(t);
+        }}
+        td.appendChild(wrap);
+      }} else {{
+        td.innerHTML = '<span class="missing">—</span>';
+      }}
+      tr.appendChild(td);
+    }}
+    tbody.appendChild(tr);
+  }}
+  table.appendChild(tbody);
+
+  main.innerHTML = '';
+  main.appendChild(table);
+}}
 document.querySelectorAll('.wf, .pr').forEach(c => c.addEventListener('change', render));
 render();
 </script>
