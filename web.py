@@ -143,9 +143,11 @@ PAGE_TEMPLATE = """<!doctype html>
   aside .btnrow {{ margin-top: 8px; }}
   aside button {{ background: #1f2430; color: #cdd6f4; border: 1px solid #313747;
                  border-radius: 6px; padding: 4px 8px; font-size: 12px; cursor: pointer; }}
-  /* No top padding: a sticky header pinned to top:0 inside a padded scroll
-     container leaves a gap where scrolling rows peek out above the header. */
-  main {{ flex: 1; padding: 0 20px 20px; min-width: 0; overflow: auto; }}
+  /* No top/left padding: a sticky header pinned to top:0/left:0 inside a padded
+     scroll container leaves a gap where scrolling content peeks past the pinned
+     header (rows above the column head, images left of the row head). Keep only
+     right/bottom padding for breathing room. */
+  main {{ flex: 1; padding: 0 20px 20px 0; min-width: 0; overflow: auto; }}
   /* The comparison matrix: prompts down the rows, workflows across the columns. */
   table.matrix {{ border-collapse: separate; border-spacing: 0; }}
   table.matrix th, table.matrix td {{ padding: 6px; border: 1px solid #1f2430; }}
