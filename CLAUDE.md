@@ -45,8 +45,13 @@ JSON in `airlock/`:
 
 1. **Move** it into `workflows/` (`git mv` isn't needed — the source is ignored;
    a plain move is fine).
-2. **Adjust** it: replace the hardcoded positive-prompt text with `%PROMPT%`, and the
-   KSampler seed with `%SEED%` (unquoted, so it fills as a JSON integer).
+2. **Adjust** it: replace the hardcoded **positive**-prompt text with `%PROMPT%`, and
+   the KSampler seed with `%SEED%` (unquoted, so it fills as a JSON integer).
+   - **Leave the negative prompt alone.** A negative is a model-specific setting (like
+     `cfg`/`steps`), not something we vary across the test. Whatever the export ships
+     with — an empty `ConditioningZeroOut`, or a real negative like
+     `"blurry, deformed, watermark"` — stays as-is. Only touch it if the Captain asks
+     to change that model's recipe. We do **not** placeholder the negative.
 3. **Verify** the substitution still parses — run the placeholder fill against a prompt
    and confirm valid JSON before declaring victory.
 

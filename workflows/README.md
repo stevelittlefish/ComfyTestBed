@@ -15,6 +15,12 @@ prompt text there before submitting.
 Optionally, put `%SEED%` where the KSampler seed goes if you want reproducible-ish
 runs controlled from `config.toml`.
 
+**Do not placeholder the negative prompt.** A negative is a model-specific setting,
+like `cfg` or `steps`, and is part of how that particular model should be run. Leave
+whatever the export ships with in place — an empty `ConditioningZeroOut` (as the turbo
+model uses) or a real negative such as `"blurry, deformed, watermark"`. We hold the
+*positive* prompt constant across models; the negative belongs to the workflow.
+
 Example snippet inside a CLIPTextEncode node:
 
 ```json
