@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_9b",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 1839108028,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 53.73,
+  "generated_at": "2026-09-02T02:27:12.822765+00:00"
+}

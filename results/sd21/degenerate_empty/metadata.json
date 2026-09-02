@@ -1,0 +1,11 @@
+{
+  "workflow": "sd21",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 3246822919,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 3.11,
+  "generated_at": "2026-09-02T02:19:52.618597+00:00"
+}

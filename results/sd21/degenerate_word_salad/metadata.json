@@ -1,0 +1,11 @@
+{
+  "workflow": "sd21",
+  "prompt": "degenerate_word_salad",
+  "prompt_text": "Why does it when it was? Well, because it did do and then will, maybe when it is then it would be",
+  "seed": 1832419992,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 3.11,
+  "generated_at": "2026-09-02T02:19:55.729550+00:00"
+}

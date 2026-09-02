@@ -1,0 +1,11 @@
+{
+  "workflow": "sd15",
+  "prompt": "eldritch_abomination",
+  "prompt_text": "A colossal eldritch abomination looming in a decaying cathedral, a writhing mass of glistening viscera, exposed muscle and bruised grey flesh fused with splintered bone. Dozens of asymmetrical bloodshot eyes weep dark fluid; lamprey mouths ringed with jagged teeth gape and drool. Ropes of sinew and dripping entrails hang between broken pillars, pooling gore across cracked stone. Sickly bioluminescent veins pulse beneath translucent skin. Oppressive, nightmarish body-horror, wet organic textures, deep shadows and shafts of cold light, cinematic horror atmosphere, highly detailed, visceral and grotesque.",
+  "seed": 62099106,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 2.08,
+  "generated_at": "2026-09-02T02:16:47.453204+00:00"
+}

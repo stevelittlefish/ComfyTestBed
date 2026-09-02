@@ -1,0 +1,11 @@
+{
+  "workflow": "sd21",
+  "prompt": "watercolour_magical",
+  "prompt_text": "A delicate watercolour painting of a magical moonlit glade where a glowing stag stands among floating lanterns and drifting fireflies. Soft wet-on-wet washes, blooming pigment, luminous blues and violets, gentle bleeding edges, visible paper texture, dreamlike and enchanted, loose and atmospheric.",
+  "seed": 2783063440,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 3.13,
+  "generated_at": "2026-09-02T02:20:39.420278+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "SDXL",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 1845800772,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.22,
+  "generated_at": "2026-09-02T02:23:30.671452+00:00"
+}

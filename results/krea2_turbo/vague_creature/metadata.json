@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 3307967916,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 17.31,
+  "generated_at": "2026-09-02T02:28:31.954638+00:00"
+}

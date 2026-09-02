@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 33778668,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.18,
+  "generated_at": "2026-09-02T02:31:30.973056+00:00"
+}
