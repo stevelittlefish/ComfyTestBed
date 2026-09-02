@@ -1,0 +1,11 @@
+{
+  "workflow": "juggernaut_xi",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 2116562693,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.3,
+  "generated_at": "2026-09-02T12:16:08.411776+00:00"
+}

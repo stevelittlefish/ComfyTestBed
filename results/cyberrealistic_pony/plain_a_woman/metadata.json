@@ -1,0 +1,11 @@
+{
+  "workflow": "cyberrealistic_pony",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 1585480356,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.27,
+  "generated_at": "2026-09-02T11:50:44.900195+00:00"
+}

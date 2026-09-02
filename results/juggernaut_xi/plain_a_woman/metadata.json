@@ -1,0 +1,11 @@
+{
+  "workflow": "juggernaut_xi",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 2072701404,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.29,
+  "generated_at": "2026-09-02T12:18:01.647868+00:00"
+}

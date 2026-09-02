@@ -1,0 +1,11 @@
+{
+  "workflow": "cyberrealistic_pony",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 1805413422,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.28,
+  "generated_at": "2026-09-02T11:48:51.820269+00:00"
+}

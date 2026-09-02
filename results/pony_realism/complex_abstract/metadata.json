@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "complex_abstract",
+  "prompt_text": "An intricate non-representational abstract composition existing in no real space: thousands of interlocking translucent geometric filaments and M\u00f6bius ribbons woven into a self-referencing lattice, threaded through with fractal spirals and impossible Penrose junctions. Iridescent glass tendrils refract light into shifting spectra; concentric fields of fine moir\u00e9 interference ripple across the surface; nested clockwork of gears that mesh at impossible angles. A restrained but luminous palette of deep indigo, teal, molten gold and pearlescent white against void-black. No recognisable objects, no landscape, no figures \u2014 pure structural complexity, dense detail, mathematical elegance, hypnotic depth, flawless rendering.",
+  "seed": 4056236920,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.27,
+  "generated_at": "2026-09-02T12:29:25.717824+00:00"
+}

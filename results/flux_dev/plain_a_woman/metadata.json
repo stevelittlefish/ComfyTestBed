@@ -1,0 +1,11 @@
+{
+  "workflow": "flux_dev",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 1462313487,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.55,
+  "generated_at": "2026-09-02T12:04:39.116874+00:00"
+}

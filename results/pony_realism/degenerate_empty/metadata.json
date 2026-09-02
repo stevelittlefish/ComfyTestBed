@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 4052660846,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.28,
+  "generated_at": "2026-09-02T12:30:17.118216+00:00"
+}

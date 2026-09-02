@@ -1,0 +1,11 @@
+{
+  "workflow": "hassaku_xl",
+  "prompt": "product_instrument",
+  "prompt_text": "Studio product photograph of a strange far-future handheld scientific instrument, about the size of a large camera. It has a matte ceramic shell, exposed titanium joints, a circular glass sensor, small physical controls, tiny warning labels, scuffed edges, and evidence of years of field use. It should look genuinely manufacturable, not like generic sci-fi concept art. Three-quarter view, soft studio lighting, neutral grey background.",
+  "seed": 3100426655,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.29,
+  "generated_at": "2026-09-02T12:08:23.762176+00:00"
+}

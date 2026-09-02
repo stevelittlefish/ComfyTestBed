@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "watercolour_magical",
+  "prompt_text": "A delicate watercolour painting of a magical moonlit glade where a glowing stag stands among floating lanterns and drifting fireflies. Soft wet-on-wet washes, blooming pigment, luminous blues and violets, gentle bleeding edges, visible paper texture, dreamlike and enchanted, loose and atmospheric.",
+  "seed": 3659636345,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.3,
+  "generated_at": "2026-09-02T12:33:32.625924+00:00"
+}

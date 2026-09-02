@@ -1,0 +1,11 @@
+{
+  "workflow": "SDXL",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 239238255,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.24,
+  "generated_at": "2026-09-02T11:37:39.474736+00:00"
+}

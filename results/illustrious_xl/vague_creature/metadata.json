@@ -1,0 +1,11 @@
+{
+  "workflow": "illustrious_xl",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 194598784,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.27,
+  "generated_at": "2026-09-02T12:14:20.026167+00:00"
+}

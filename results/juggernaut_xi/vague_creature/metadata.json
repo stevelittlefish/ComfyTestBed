@@ -1,0 +1,11 @@
+{
+  "workflow": "juggernaut_xi",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 3089983307,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.3,
+  "generated_at": "2026-09-02T12:19:13.692177+00:00"
+}

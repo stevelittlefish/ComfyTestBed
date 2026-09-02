@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_9b",
+  "prompt": "dystopian_1984_city",
+  "prompt_text": "Photographic dystopian futuristic scene.  Cyberpunk aesthetic far future Russian city with oppressed citizens.  Police state.  Trippy far future dystopian nightmare.  Sign saying \"1984\" on building in neon lights.  Dark, sinister.  Realistic.  Neon lights.  Hi tech futuristic city.  Raining.  Russian letters on signs.  Cloudy sky.  Bright neon lights.  Citizens being arrested by riot police with black truncheons and tasers.  Large crowd of civilian protesters with banners and placards and signs. Narrow streets filled with people.",
+  "seed": 556458992,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 54.05,
+  "generated_at": "2026-09-02T11:57:39.663272+00:00"
+}

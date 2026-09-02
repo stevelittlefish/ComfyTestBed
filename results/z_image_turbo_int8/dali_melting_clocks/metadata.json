@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "dali_melting_clocks",
+  "prompt_text": "A surrealist oil painting in the style of Salvador Dal\u00ed. Melting clocks draped over giant iridescent mushrooms in a desert landscape under a violet sky with two moons, dreamlike atmosphere, heavy brushstrokes, vivid colors.",
+  "seed": 4027922683,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.21,
+  "generated_at": "2026-09-02T12:45:09.860657+00:00"
+}

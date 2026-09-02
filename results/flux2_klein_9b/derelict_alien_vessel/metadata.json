@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_9b",
+  "prompt": "derelict_alien_vessel",
+  "prompt_text": "An impossibly enormous alien structure rising out of a field of shattered rock where it crashed, tilted and half-buried. It is so vast it fills the frame and continues up out of the top, its full size beyond view. Dark alien hull, subtle warm lights glowing from scattered openings deep in its surface. Bleak overcast weather, cold wind, thin rain and low cloud clinging to the structure. Two explorers in the foreground, tiny specks at the base of it, cautiously approaching, utterly dwarfed. Wide shot, the vessel towering over everything. Photographic, realistic, muted natural colour.",
+  "seed": 1556706012,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 54.08,
+  "generated_at": "2026-09-02T11:56:45.608007+00:00"
+}

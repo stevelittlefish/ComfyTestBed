@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo_llm",
+  "prompt": "machine_elves_dmt",
+  "prompt_text": "Photograph of many tiny machine elves dancing around large mechanical creature.  DMT trip visuals.  Kaleidoscopic hallucination.  Tiny intricate mechanical creatures dancing through the void.  Dreamlike alien consciousness.  Robots from another dimension.  Intricately detailed.  Photograph.  Macro photography.  Bold, bright colours.  High contrast. Living biological background. Wide focus. Central godlike entity, demigod",
+  "seed": 846440951,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 34.69,
+  "generated_at": "2026-09-02T12:27:48.131141+00:00"
+}

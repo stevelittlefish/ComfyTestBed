@@ -1,0 +1,11 @@
+{
+  "workflow": "hassaku_xl",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 4065705584,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.28,
+  "generated_at": "2026-09-02T12:09:25.573327+00:00"
+}

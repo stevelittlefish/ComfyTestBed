@@ -1,0 +1,11 @@
+{
+  "workflow": "chroma",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 1850285663,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 62.17,
+  "generated_at": "2026-09-02T11:47:11.956301+00:00"
+}

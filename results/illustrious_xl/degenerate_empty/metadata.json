@@ -1,0 +1,11 @@
+{
+  "workflow": "illustrious_xl",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 1716763511,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.27,
+  "generated_at": "2026-09-02T12:11:14.728484+00:00"
+}

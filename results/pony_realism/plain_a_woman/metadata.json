@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 3368199828,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.3,
+  "generated_at": "2026-09-02T12:32:10.256693+00:00"
+}

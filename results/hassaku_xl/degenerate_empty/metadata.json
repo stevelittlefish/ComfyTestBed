@@ -1,0 +1,11 @@
+{
+  "workflow": "hassaku_xl",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 4064067587,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.28,
+  "generated_at": "2026-09-02T12:06:20.379517+00:00"
+}

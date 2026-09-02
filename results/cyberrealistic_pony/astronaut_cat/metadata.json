@@ -1,0 +1,11 @@
+{
+  "workflow": "cyberrealistic_pony",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 605000154,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.28,
+  "generated_at": "2026-09-02T11:47:39.810700+00:00"
+}

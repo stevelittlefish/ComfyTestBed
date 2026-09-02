@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 2185353984,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.31,
+  "generated_at": "2026-09-02T12:33:22.330102+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo_llm",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 2498457528,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 49.17,
+  "generated_at": "2026-09-02T12:28:37.300115+00:00"
+}

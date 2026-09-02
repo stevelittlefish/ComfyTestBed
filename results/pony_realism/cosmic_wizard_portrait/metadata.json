@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "cosmic_wizard_portrait",
+  "prompt_text": "A richly painted portrait of an old wizard, head and shoulders, facing the camera, centred. Long flowing white beard, round spectacles, a wide-brimmed pointed hat. Deep cosmic nebula background of swirling purple, blue and magenta with scattered glowing stars. Vivid saturated colour with luminous rim-light along his hair and hat, a softly glowing orange orb of magic below his face. Painterly digital painting, visible expressive brushstrokes, soft painted edges, textured impasto highlights, rich and atmospheric fantasy illustration.",
+  "seed": 2086164434,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.27,
+  "generated_at": "2026-09-02T12:29:35.990750+00:00"
+}

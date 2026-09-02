@@ -1,0 +1,11 @@
+{
+  "workflow": "hassaku_xl",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 1435216167,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 10.26,
+  "generated_at": "2026-09-02T12:08:13.466881+00:00"
+}
