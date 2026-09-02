@@ -1,0 +1,20 @@
+# ComfyTestBed ship's configuration.
+# Edit these unless you enjoy the sound of the harness talking to nobody.
+
+[server]
+# Base URL of the ComfyUI engine core. No trailing slash, we're not savages.
+url = "https://comfy.seaslug.ai"
+# How long (seconds) we'll wait for a single render before assuming the
+# engine has wandered off for a cup of tea and given up.
+timeout = 600
+
+[generation]
+# The token we swap out inside each workflow for the prompt text.
+# Put this exact string wherever the prompt should go in your workflow JSON.
+prompt_placeholder = "%PROMPT%"
+
+# Optional seed placeholder. If present in a workflow, we fill it with the
+# seed below (or a random one when seed = -1). Leave the placeholder out
+# entirely if you don't care, which, let's be honest, you probably don't.
+seed_placeholder = "%SEED%"
+seed = -1
