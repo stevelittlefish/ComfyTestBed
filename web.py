@@ -65,6 +65,7 @@ WORKFLOW_ORDER = [
     # --- end SDXL family ---
     "Flux_Schnell",         # FLUX.1 schnell — Aug 2024 (distilled, simplest)
     "flux_dev",             # FLUX.1 dev — Aug 2024 (fuller, after schnell)
+    "flux1_krea_dev",       # FLUX.1 Krea dev — 2025 (BFL finetune of flux dev)
     # --- SD 3.5 family, all Oct 2024; medium (smaller) -> large -> turbo shortcut ---
     "SD35_medium",          # SD 3.5 Medium — Oct 2024 (2.5B, triple-CLIP)
     "SD35_large",           # SD 3.5 Large — Oct 2024 (8B, fuller)
