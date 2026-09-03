@@ -65,7 +65,11 @@ WORKFLOW_ORDER = [
     # --- end SDXL family ---
     "Flux_Schnell",         # FLUX.1 schnell — Aug 2024 (distilled, simplest)
     "flux_dev",             # FLUX.1 dev — Aug 2024 (fuller, after schnell)
-    "sd35_large_turbo",     # SD 3.5 Large Turbo — Oct 2024
+    # --- SD 3.5 family, all Oct 2024; medium (smaller) -> large -> turbo shortcut ---
+    "SD35_medium",          # SD 3.5 Medium — Oct 2024 (2.5B, triple-CLIP)
+    "SD35_large",           # SD 3.5 Large — Oct 2024 (8B, fuller)
+    "sd35_large_turbo",     # SD 3.5 Large Turbo — Oct 2024 (distilled shortcut)
+    # --- end SD 3.5 family ---
     "chroma",               # Chroma — 2025
     "z_image_turbo_int8",   # Z-Image Turbo — 2025 (distilled, simplest)
     "z_image",              # Z-Image base (bf16) — 2025 (fuller, after turbo)
