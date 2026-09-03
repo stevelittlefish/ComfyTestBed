@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 5664760,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 50.63,
+  "generated_at": "2026-09-02T14:54:59.469211+00:00"
+}

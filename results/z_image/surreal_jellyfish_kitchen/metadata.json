@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image",
+  "prompt": "surreal_jellyfish_kitchen",
+  "prompt_text": "A perfectly ordinary British suburban kitchen at breakfast time, except a huge translucent jellyfish is floating silently near the ceiling. Morning sunlight through the window, cereal boxes on the counter, kettle steaming, realistic domestic clutter, believable reflections and shadows, photorealistic image with the impossible subject treated as completely normal.",
+  "seed": 1428282402,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 51.16,
+  "generated_at": "2026-09-02T14:57:31.923572+00:00"
+}

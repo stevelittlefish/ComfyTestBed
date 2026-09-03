@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 1232649922,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 47.9,
+  "generated_at": "2026-09-02T14:43:58.639598+00:00"
+}
