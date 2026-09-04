@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_medium",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 3990170594,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 15.6,
+  "generated_at": "2026-09-03T16:35:43.101068+00:00"
+}

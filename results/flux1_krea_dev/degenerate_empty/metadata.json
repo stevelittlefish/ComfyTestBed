@@ -1,0 +1,11 @@
+{
+  "workflow": "flux1_krea_dev",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 4183163289,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.82,
+  "generated_at": "2026-09-03T17:25:40.671212+00:00"
+}

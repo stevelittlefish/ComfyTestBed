@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_large",
+  "prompt": "carrot_ship_fungal_planet",
+  "prompt_text": "Spaceship in the form of a carrot.  Orange carrot ship on its descent high above the surface of an alien planet.  Looking down from above, forests below the spacecraft.\n\nThe planet's surface is covered in a forest of alien fungal and meat trees.  Vegetation is very dense.  Spores float in the atmosphere.  Weird tentacles emerge from fractal forests of moss and mold.  Camera is looking down on alien planet and spacecraft.\n\nThe spaceship is in the foreground with the terrain behind it.  Top down perspective.\n\nVivid colours.  Highly detailed and anime style drawing.  Top down perspective.  Trippy, hallucinogenic mushroom trip visuals.  DMT trip.  Machine elves.",
+  "seed": 402980234,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 40.07,
+  "generated_at": "2026-09-03T17:04:53.654143+00:00"
+}

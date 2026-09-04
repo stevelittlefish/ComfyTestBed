@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_medium",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 2425885939,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 15.37,
+  "generated_at": "2026-09-03T16:32:52.396668+00:00"
+}

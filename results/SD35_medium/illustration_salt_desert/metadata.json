@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_medium",
+  "prompt": "illustration_salt_desert",
+  "prompt_text": "A beautifully illustrated science-fiction book cover showing a tiny caravan of explorers crossing a vast salt desert beneath the ruins of a colossal orbital elevator. Sparse composition, restrained palette of pale cream, rust red and deep blue, textured gouache and ink, elegant shapes, strong negative space, sophisticated 1970s speculative-fiction illustration, not glossy digital concept art.",
+  "seed": 4004909389,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 15.36,
+  "generated_at": "2026-09-03T16:34:25.392243+00:00"
+}

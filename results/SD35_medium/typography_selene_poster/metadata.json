@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_medium",
+  "prompt": "typography_selene_poster",
+  "prompt_text": "A clean retrofuturist travel poster for a fictional lunar city. Large readable headline: \"VISIT SELENE\". Smaller readable subtitle: \"THE QUIET SIDE OF THE MOON\". Bold geometric architecture, limited colour palette, screen-printed texture, elegant 1960s graphic design, balanced layout, crisp typography.",
+  "seed": 908119222,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 15.63,
+  "generated_at": "2026-09-03T16:37:17.090826+00:00"
+}

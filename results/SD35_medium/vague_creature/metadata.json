@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_medium",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 2855416114,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 15.59,
+  "generated_at": "2026-09-03T16:37:32.683494+00:00"
+}

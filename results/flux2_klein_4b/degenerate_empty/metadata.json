@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_4b",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 873082032,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 25.53,
+  "generated_at": "2026-09-03T16:48:47.357926+00:00"
+}

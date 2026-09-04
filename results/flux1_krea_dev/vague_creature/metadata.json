@@ -1,0 +1,11 @@
+{
+  "workflow": "flux1_krea_dev",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 1863205705,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.7,
+  "generated_at": "2026-09-03T17:33:43.008728+00:00"
+}

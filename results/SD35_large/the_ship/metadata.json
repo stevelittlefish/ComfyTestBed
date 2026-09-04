@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_large",
+  "prompt": "the_ship",
+  "prompt_text": "A decrepit, clapped-out spaceship drifting through the void, unmistakably the spacefaring equivalent of a rusted-out old Nissan Micra dredged from a scrapheap. Mismatched hull panels held together with duct tape, rivets and hope; patches of orange rust creeping across dented plating; one running light flickering, another missing entirely. A cracked cockpit windscreen, a wing-mirror bolted on at a jaunty angle, and a wheezing exhaust venting a thin trail of vapour. Faded, peeling paint with the ghost of a proud name barely legible on the side. Cinematic lighting, cold starlight, photorealistic, highly detailed, dramatic but deeply unglamorous. The pride of a captain who really ought to know better.",
+  "seed": 3239410505,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 41.02,
+  "generated_at": "2026-09-03T17:19:29.990472+00:00"
+}

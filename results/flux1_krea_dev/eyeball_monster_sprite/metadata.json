@@ -1,0 +1,11 @@
+{
+  "workflow": "flux1_krea_dev",
+  "prompt": "eyeball_monster_sprite",
+  "prompt_text": "a floating spherical eyeball monster, a large levitating orb with one huge central eye and a gaping fanged maw below it, a crown of many wriggling eye-stalks sprouting from the top, veiny slimy flesh, eldritch horror, full body, whole creature in frame, centred, evenly lit, plain flat neutral light grey studio background, no shadow, photographic, sharp detail, single creature",
+  "seed": 3029234307,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.83,
+  "generated_at": "2026-09-03T17:27:54.792181+00:00"
+}

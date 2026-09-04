@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_large",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 1797024374,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 37.79,
+  "generated_at": "2026-09-03T17:04:13.582620+00:00"
+}
