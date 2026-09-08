@@ -1,0 +1,11 @@
+{
+  "workflow": "cyberrealistic_pony",
+  "prompt": "birch_branch",
+  "prompt_text": "A silver birch tree branch with many leaves.  Realistic, flat, branch with leaves.  On a plain grey background.",
+  "seed": 2652904738,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.21,
+  "generated_at": "2026-09-08T21:50:36.665025+00:00"
+}

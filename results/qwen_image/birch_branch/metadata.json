@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image",
+  "prompt": "birch_branch",
+  "prompt_text": "A silver birch tree branch with many leaves.  Realistic, flat, branch with leaves.  On a plain grey background.",
+  "seed": 3699824042,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 50.02,
+  "generated_at": "2026-09-08T22:04:24.641385+00:00"
+}

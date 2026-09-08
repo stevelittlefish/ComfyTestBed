@@ -1,0 +1,11 @@
+{
+  "workflow": "illustrious_xl",
+  "prompt": "kodama_forest_spirit",
+  "prompt_text": "A kodama tree spirit from Princess Mononoke, a small pale ghostly forest imp. A big smooth pale dome head with a scatter of small dark holes for a face, a little rounded pale body, short spindly limbs, smooth eggshell-white featureless skin. Quietly eerie, strange and faintly mischievous, hand-sculpted like a weathered stone maquette in muted natural colours. Seen from a three-quarter view angle, standing full body, centred, the whole figure visible, even soft studio lighting, plain neutral background.",
+  "seed": 30199131,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.25,
+  "generated_at": "2026-09-08T21:58:35.153328+00:00"
+}
