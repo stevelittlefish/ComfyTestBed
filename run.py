@@ -241,7 +241,14 @@ def run(force=False, list_only=False, only_workflows=None):
     for wf, pr in plan:
         by_workflow.setdefault(wf, []).append(pr)
 
-    for wf, pending in by_workflow.items():
+    wf_total = len(by_workflow)
+    for wf_index, (wf, pending) in enumerate(by_workflow.items(), start=1):
+        # Announce arrival at this workflow so the Captain can see, at a glance,
+        # where we are in the fleet and how much of it is left to survey.
+        holly("")
+        holly(f"########## workflow {wf_index}/{wf_total}: {wf} "
+              f"({len(pending)} prompt(s) to render) ##########")
+
         # Warm-up: fire one throwaway render to load the model, so the first real
         # prompt's timing isn't inflated by cold-start loading. We discard it.
         warmup = random.choice(WARMUP_PROMPTS)
