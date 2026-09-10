@@ -260,9 +260,10 @@ PAGE_TEMPLATE = """<!doctype html>
   #lbprev {{ left: 16px; }}
   #lbnext {{ right: 16px; }}
   /* Up/down step through prompts (rows) in the same workflow column. */
-  #lbup, #lbdown {{ left: 50%; top: auto; transform: translateX(-50%); }}
-  #lbup {{ top: 16px; }}
-  #lbdown {{ bottom: 16px; }}
+  #lbup, #lbdown {{ left: 50%; top: auto; transform: translateX(-50%);
+           width: 60px; height: 22px; border-radius: 11px; font-size: 20px; }}
+  #lbup {{ top: 12px; }}
+  #lbdown {{ bottom: 12px; }}
   #lbup span, #lbdown span {{ display: block; }}
   #lbup span {{ transform: rotate(90deg); }}
   #lbdown span {{ transform: rotate(-90deg); }}
