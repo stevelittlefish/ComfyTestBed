@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 2151443540,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.46,
+  "generated_at": "2026-09-10T18:49:26.884543+00:00"
+}

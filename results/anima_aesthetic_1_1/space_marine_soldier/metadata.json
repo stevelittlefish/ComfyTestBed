@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "space_marine_soldier",
+  "prompt_text": "a futuristic space marine soldier in matte black and dark gunmetal tactical exo-armour with subtle cyan trim, sleek sci-fi design, realistic normal human proportions, full body character from head to toe, standing in a T-pose with both arms stretched straight out horizontally to the sides, fingers spread, empty hands, legs slightly apart, facing forward, a single figure in a symmetrical T-pose, arms straight out horizontal, full body head to feet visible, evenly lit, plain light grey background, no cape, no cloak",
+  "seed": 3261835397,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.37,
+  "generated_at": "2026-09-10T18:55:16.657456+00:00"
+}

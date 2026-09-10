@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "birch_branch",
+  "prompt_text": "A silver birch tree branch with many leaves.  Realistic, flat, branch with leaves.  On a plain grey background.",
+  "seed": 3185027793,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.41,
+  "generated_at": "2026-09-10T18:46:59.515310+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 57520092,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.38,
+  "generated_at": "2026-09-10T18:57:43.836386+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "woodkin_forest_spirit",
+  "prompt_text": "a small humanoid forest spirit carved from smooth weathered wood, simple solid body, bare smooth limbs, standing in a T-pose with both arms stretched straight out horizontally to the sides, legs slightly apart, plain rounded head with a calm carved face, faint moss patches, no clothing, symmetrical, a single figure in a symmetrical T-pose, arms straight out horizontal, full body head to feet visible, seen from a three-quarter view angle, centered, even soft studio lighting, plain neutral background, product render.",
+  "seed": 704541489,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.39,
+  "generated_at": "2026-09-10T18:58:20.667182+00:00"
+}

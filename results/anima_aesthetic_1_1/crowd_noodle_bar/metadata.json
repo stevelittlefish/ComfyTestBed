@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "crowd_noodle_bar",
+  "prompt_text": "A busy late-night noodle restaurant in Tokyo with eight customers doing different things: one couple talking quietly, a delivery rider checking a phone, an elderly man eating alone, two students laughing, and a chef working behind the counter. Steam rising from bowls, condensation on windows, realistic fluorescent and warm kitchen lighting, candid documentary photography, natural body language, believable faces, dense but coherent scene.",
+  "seed": 2719219013,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.39,
+  "generated_at": "2026-09-10T18:48:49.937007+00:00"
+}

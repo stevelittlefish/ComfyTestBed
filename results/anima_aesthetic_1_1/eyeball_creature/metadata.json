@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 2823375001,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.39,
+  "generated_at": "2026-09-10T18:51:17.349699+00:00"
+}

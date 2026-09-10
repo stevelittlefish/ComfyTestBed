@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "knight_plate_armour",
+  "prompt_text": "a medieval knight in polished steel plate armour, ornate but grounded, realistic normal human proportions, full body character from head to toe, standing in a relaxed A-pose with arms held slightly away from the sides, empty hands, feet apart on the ground, facing forward, evenly lit, plain light grey background, no cape, no cloak",
+  "seed": 848735795,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.4,
+  "generated_at": "2026-09-10T18:52:12.580637+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "astronaut_cat",
+  "prompt_text": "a photorealistic cat wearing an astronaut helmet, floating in the cockpit of a rusty spaceship, dramatic lighting, cinematic",
+  "seed": 1803129179,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.4,
+  "generated_at": "2026-09-10T18:46:41.108448+00:00"
+}

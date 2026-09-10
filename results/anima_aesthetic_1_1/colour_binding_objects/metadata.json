@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "colour_binding_objects",
+  "prompt_text": "Five simple objects arranged in a single neat row on a plain white table, left to right: a matte red cube, a glossy blue sphere, a bright green cone, a yellow cylinder, and a small purple pyramid. Each object is its own distinct solid colour with no colour bleeding between them, evenly spaced, all fully visible, clean even studio lighting, sharp focus, realistic product photography, plain neutral background.",
+  "seed": 2006262135,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.41,
+  "generated_at": "2026-09-10T18:47:36.327085+00:00"
+}
