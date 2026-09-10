@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "triffids_walking",
+  "prompt_text": "Illustration of a group of Triffids from day of the triffids.  They have a long stem with a single pink open flower at the top.  From inside the flower comes a long curled stem with a sting on the end.  They are walking around on stick like legs.  They have a large fleshy yellow body with stems and leaves coming out of it.  The vine whip stinger protruding the trumpet shaped flower is long and green and dripping with venom.\n\nThe triffids are surrounding a house in a state of disrepair on the outskirts of a deserted city.\n\nThe triffids are the size of a man with a vine whip like stinger at the top and leafy appendages around their bodies.",
+  "seed": 3425738024,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.28,
+  "generated_at": "2026-09-10T22:49:04.321739+00:00"
+}

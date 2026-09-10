@@ -1,0 +1,11 @@
+{
+  "workflow": "cyberrealistic_pony",
+  "prompt": "biomechanical_machine_closeup",
+  "prompt_text": "A stunning close-up of a biological machine, seamlessly blending organic and mechanical elements. Its surface is a mesmerizing mix of living tissue and polished metal, with organic veins pulsing faintly with glowing blue energy alongside intricate circuits. Delicate gears and pistons emerge from a heart-like core, encased in translucent membranes that reveal a fusion of blood flow and hydraulic fluids. Tendrils of biomechanical cables extend outward, connecting to a glowing neural interface that resembles a brain fused with fiber optics. The setting is dimly lit, with a soft green and gold bioluminescent glow highlighting its intricate details, giving an ethereal, futuristic atmosphere.",
+  "seed": 171682582,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.54,
+  "generated_at": "2026-09-10T21:55:00.235976+00:00"
+}

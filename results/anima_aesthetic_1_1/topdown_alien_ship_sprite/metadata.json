@@ -1,0 +1,11 @@
+{
+  "workflow": "anima_aesthetic_1_1",
+  "prompt": "topdown_alien_ship_sprite",
+  "prompt_text": "Highly detailed sprite of a spaceship for a top down shooter.  Strange alien ship with forward swept wings.  Robotic insectoid parts on the ship.  Plain black background.  Hi tech, futuristic.  High resolution graphics.  Modern space game asset. HD extra large sprite.  Neon 80s retro future asthetic.  Top down orthographic projection.",
+  "seed": 1062084222,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 18.4,
+  "generated_at": "2026-09-10T21:39:50.965136+00:00"
+}

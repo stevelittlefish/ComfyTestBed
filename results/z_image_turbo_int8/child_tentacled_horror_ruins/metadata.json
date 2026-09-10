@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "child_tentacled_horror_ruins",
+  "prompt_text": "A post apocalyptic scene.  A 5 year old girl in a nightie in the streets of a completely destroyed, futuristic city.\n\nAn enormous, disgusting, tentacled creature is walking towards the child.  It is covered in veins and exposed pulsating organs.  In one of it's tentacles is a half eaten corpse of a man.  It has many eyes.  It's brain is exposed and blood vessels run along its body.  It's face is covered in blood.\n\nBits of broken machinery and vehicles are scattered over the streets.\n\nThe girl is crouched down, playing with a teddy bear. The girl is wearing a bright red nightie, giving some colourful contrast with the dull grey background.  She has a yellow flower in her hair.\n\nDramatic lighting, photorealistic, futuristic, creepy.",
+  "seed": 1735899023,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.23,
+  "generated_at": "2026-09-10T23:17:12.183229+00:00"
+}

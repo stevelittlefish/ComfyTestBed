@@ -1,0 +1,11 @@
+{
+  "workflow": "sd35_large_turbo",
+  "prompt": "apocalyptic_city_single_flower",
+  "prompt_text": "An apocalyptic scene.  A photograph of a modern city in ruins.  The buildings have been reduced to rubble.  My of the building are on fire and smoke is billowing out of the buildings.  There are bones and dead animals and bodies scattered throughout.  Burnt out cars are in the streets.  The sky is grey with thunderclouds.\n\nIn the middle of the scene, there is a single, tiny, beautiful flower.  There is a small parting in the clouds and a beam of sunlight is illuminating the flower.  There are god-rays beaming down on the flower.",
+  "seed": 3632609282,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.25,
+  "generated_at": "2026-09-10T23:04:11.867010+00:00"
+}

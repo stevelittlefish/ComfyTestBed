@@ -1,0 +1,11 @@
+{
+  "workflow": "juggernaut_xi",
+  "prompt": "jelly_alien_six_legs_swamp",
+  "prompt_text": "A bizarre alien creature in its natural habitat, rendered in stunning photorealistic detail. The creature stands on six spindly legs, its semi-translucent, jelly-like body shimmering in iridescent hues of green, purple, and gold. Its elongated, flexible head features bioluminescent tendrils that sway gently, glowing softly in the dim light of its surroundings. The habitat is a dense, alien swamp with towering, spiraled trees whose bark glows faintly with a mossy blue luminescence. Strange, bulbous plants ooze a thick, amber liquid, while vibrant, insect-like organisms flit around the creature, casting fleeting reflections in the still, glassy pools of water. The atmosphere is humid and dense, with a faint mist clinging to the ground, as shafts of light from a distant sun break through the canopy, highlighting the creature\u2019s intricate, alien anatomy and blending seamlessly into its otherworldly environment.",
+  "seed": 4174259278,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.27,
+  "generated_at": "2026-09-10T22:32:45.020284+00:00"
+}

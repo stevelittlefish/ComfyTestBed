@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "seraphina_forest_guardian",
+  "prompt_text": "best quality, absurdres, aesthetic, full body portrait, Seraphina, Human, Female, Unknown age, Black sundress, Guardian of the forest, Pink hair, Long hair, Amber eyes, White teeth, Pink lips, White skin, Soft skin.",
+  "seed": 2248075937,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.5,
+  "generated_at": "2026-09-10T22:48:26.923399+00:00"
+}

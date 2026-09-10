@@ -1,0 +1,11 @@
+{
+  "workflow": "hassaku_xl",
+  "prompt": "alien_cityscape_moons",
+  "prompt_text": "A sprawling alien cityscape on a distant planet, glowing under the light of multiple moons and a vivid aurora stretching across the alien sky. The city is a stunning blend of futuristic technology and alien architecture\u2014towering spires crafted from translucent materials pulsate with inner light, while floating platforms and bridges connect buildings suspended in midair. The streets are alive with a variety of alien species, their glowing bioluminescent features and intricate exoskeletons reflecting the ambient light. Hovering vehicles and organic, creature-like transports glide silently through the air. In the distance, an enormous alien structure resembling a living organism dominates the skyline, its surface shifting and pulsating as if alive. The atmosphere is filled with vibrant colors\u2014iridescent blues, purples, and greens\u2014casting a surreal, dreamlike quality over the entire scene.",
+  "seed": 1995077345,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.28,
+  "generated_at": "2026-09-10T22:27:06.392811+00:00"
+}

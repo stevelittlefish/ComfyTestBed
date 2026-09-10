@@ -1,0 +1,11 @@
+{
+  "workflow": "Flux_Schnell",
+  "prompt": "penink_tentacled_space_creature",
+  "prompt_text": "Pen and ink illustration of a tentacled creature flying through space.  Many eyes.  Vibrant, colourful, vivid colours.  High contrast.  Bold.  Tentacled space creature.  Trippy.",
+  "seed": 1470670263,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 8.24,
+  "generated_at": "2026-09-10T21:20:22.687494+00:00"
+}

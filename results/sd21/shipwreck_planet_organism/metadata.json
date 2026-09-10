@@ -1,0 +1,11 @@
+{
+  "workflow": "sd21",
+  "prompt": "shipwreck_planet_organism",
+  "prompt_text": "A space ship has crashed into a planet sized organism.  Enormous biological entity.  Organs and veins on planet sized being.",
+  "seed": 252499987,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 3.16,
+  "generated_at": "2026-09-10T23:03:27.021122+00:00"
+}
