@@ -1,7 +1,7 @@
 # ComfyTestBed
 
 <p align="center">
-  <img src="results/flux2_klein_4b/the_ship/image.png" alt="The ship — a decrepit, duct-taped starship adrift in the void" width="600">
+  <img src="results/flux2_klein_4b/the_ship/image.png" alt="The ship — a decrepit, duct-taped starship adrift in the void" width="400" height="400">
 </p>
 
 <h1 align="center">To boldly go where no <del>man</del> one …should</h1>
