@@ -255,6 +255,8 @@ PAGE_TEMPLATE = """<!doctype html>
            border-radius: 50%; width: 48px; height: 48px; font-size: 26px;
            line-height: 1; cursor: pointer; user-select: none; z-index: 51; }}
   .lbnav:hover {{ background: rgba(49,55,71,.9); }}
+  .lbnav:disabled {{ opacity: .25; cursor: default; }}
+  .lbnav:disabled:hover {{ background: rgba(31,36,48,.7); }}
   #lbprev {{ left: 16px; }}
   #lbnext {{ right: 16px; }}
   /* Prompt-text popup: click a prompt row header to read the full prompt. */
@@ -336,6 +338,8 @@ function lbShow() {{
     '<span class="pr">' + esc(it.prompt) + '</span> / ' +
     '<span class="wf">' + esc(it.workflow) + '</span> ' +
     '<span class="pos">(' + (LB.idx + 1) + '/' + LB.items.length + ')</span>';
+  document.getElementById('lbprev').disabled = (LB.idx === 0);
+  document.getElementById('lbnext').disabled = (LB.idx === LB.items.length - 1);
 }}
 function openLightbox(items, idx) {{
   LB.items = items; LB.idx = idx;
@@ -344,7 +348,9 @@ function openLightbox(items, idx) {{
 }}
 function lbStep(delta) {{
   if (!LB.items.length) return;
-  LB.idx = (LB.idx + delta + LB.items.length) % LB.items.length;  // wrap around
+  const next = LB.idx + delta;
+  if (next < 0 || next >= LB.items.length) return;  // clamp at ends, no wrap
+  LB.idx = next;
   lbShow();
 }}
 function lbClose() {{ document.getElementById('lb').style.display = 'none'; }}
