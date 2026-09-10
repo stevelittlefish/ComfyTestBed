@@ -1,13 +1,10 @@
 # ComfyTestBed
 
-For firing prompts at different image generators to compare the results.
+<p align="center">
+  <img src="results/flux2_klein_4b/the_ship/image.png" alt="The ship — a decrepit, duct-taped starship adrift in the void" width="600">
+</p>
 
-Or, as the ship's records have it: a harness for exploring the galaxy of possible
-images that [ComfyUI](https://github.com/comfyanonymous/ComfyUI) can generate,
-one prompt-and-workflow combination at a time.
-
-There is **no database**. Everything is files in this git repository, so the results
-get committed and the whole expedition is version-controlled. Revolutionary, I know.
+<h1 align="center">To boldly go where no <del>man</del> one …should</h1>
 
 ## ⚠️ Content warning
 
@@ -27,6 +24,17 @@ solid magenta box, usually with a terse editorial remark:
 The censor bars are painted on for the public gallery only; they are a deliberate,
 low-effort, faintly sarcastic redaction, not an accident of the model. Nothing that
 would cross a hard line is committed here.
+
+## Intro
+
+For firing prompts at different image generators to compare the results.
+
+Or, as the ship's records have it: a harness for exploring the galaxy of possible
+images that [ComfyUI](https://github.com/comfyanonymous/ComfyUI) can generate,
+one prompt-and-workflow combination at a time.
+
+There is **no database**. Everything is files in this git repository, so the results
+get committed and the whole expedition is version-controlled. Revolutionary, I know.
 
 ## What's in the ship
 
