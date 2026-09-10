@@ -78,6 +78,7 @@ WORKFLOW_ORDER = [
     "krea2_turbo",          # Krea2 turbo — 2025 (plain)
     "krea2_turbo_llm",      # Krea2 turbo — 2025 (+ LLM prompt rewrite; more complex)
     "qwen_image",           # Qwen-Image — 2025
+    "anima_aesthetic_1_1",  # Anima Aesthetic v1.1 — 2026 (Qwen-Image anime finetune)
     "flux2_klein_4b",       # FLUX.2 Klein 4B — Nov 2025 (smaller, simpler)
     "flux2_klein_9b",       # FLUX.2 Klein 9B — Nov 2025 (newest)
 ]
