@@ -9,6 +9,25 @@ one prompt-and-workflow combination at a time.
 There is **no database**. Everything is files in this git repository, so the results
 get committed and the whole expedition is version-controlled. Revolutionary, I know.
 
+## ⚠️ Content warning
+
+This is an unfiltered survey of what image generators actually produce when you point
+them at strange coordinates. Expect the weird, the grotesque, and the frankly
+disturbing: body horror, monsters, gore, cartoon violence, and surreal nudity. If any
+of that is not for you, this is not the repository for you — turn back now, no hard
+feelings.
+
+**Some images are censored.** Where an image strays into territory best not published
+in full on a public repo — chiefly nudity — the offending region is covered with a
+solid magenta box, usually with a terse editorial remark:
+
+> a full-body figure, nude, with a magenta box reading "Boobs" over the chest and a
+> second reading "Why?" lower down
+
+The censor bars are painted on for the public gallery only; they are a deliberate,
+low-effort, faintly sarcastic redaction, not an accident of the model. Nothing that
+would cross a hard line is committed here.
+
 ## What's in the ship
 
 ```
