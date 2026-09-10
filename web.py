@@ -19,6 +19,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(ROOT, "results")
+PROMPTS_DIR = os.path.join(ROOT, "prompts")
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 
 # The review queue's verdicts live here: {"workflow/prompt": "good"|"censored"|
@@ -130,6 +131,24 @@ def scan_results():
     return items
 
 
+def load_prompt_texts():
+    """Read prompts/<name>.txt into {name: full_text}. The gallery's prompt row
+    headers are these same stems, so this lets a click reveal the real prompt.
+    A missing or unreadable file just means 'no text on file' — never a crash."""
+    texts = {}
+    if not os.path.isdir(PROMPTS_DIR):
+        return texts
+    for fn in os.listdir(PROMPTS_DIR):
+        if not fn.endswith(".txt"):
+            continue
+        try:
+            with open(os.path.join(PROMPTS_DIR, fn), encoding="utf-8") as f:
+                texts[fn[:-4]] = f.read().strip()
+        except OSError:
+            continue
+    return texts
+
+
 def render_page():
     items = scan_results()
     workflows = sorted({it["workflow"] for it in items}, key=wf_sort_key)
@@ -153,10 +172,13 @@ def render_page():
     pr_opts = "".join(f"<label><input type='checkbox' class='pr' value='{html.escape(p)}' checked> {html.escape(p)}</label>"
                       for p in prompts)
 
+    prompt_texts = json.dumps(load_prompt_texts()).replace("<", "\\u003c")
+
     return PAGE_TEMPLATE.format(
         data=data_json, wf_opts=wf_opts, pr_opts=pr_opts,
         empty_note=empty_note, count=len(items),
         wf_order=json.dumps(WORKFLOW_ORDER),
+        prompt_texts=prompt_texts,
     )
 
 
@@ -203,6 +225,9 @@ PAGE_TEMPLATE = """<!doctype html>
                           color: #a6e3a1; font-size: 12px; text-align: right;
                           white-space: nowrap; max-width: 220px; overflow: hidden;
                           text-overflow: ellipsis; }}
+  /* The prompt row headers are clickable — they reveal the full prompt text. */
+  table.matrix tbody th.promptname {{ cursor: pointer; }}
+  table.matrix tbody th.promptname:hover {{ color: #cdd6f4; text-decoration: underline; }}
   table.matrix thead th.corner {{ left: 0; z-index: 4; color: #6c7394; }}
   td.cell {{ width: 200px; height: 200px; background: #060810; text-align: center;
             vertical-align: middle; }}
@@ -231,6 +256,17 @@ PAGE_TEMPLATE = """<!doctype html>
   .lbnav:hover {{ background: rgba(49,55,71,.9); }}
   #lbprev {{ left: 16px; }}
   #lbnext {{ right: 16px; }}
+  /* Prompt-text popup: click a prompt row header to read the full prompt. */
+  #pm {{ position: fixed; inset: 0; background: rgba(0,0,0,.85); display: none;
+        align-items: center; justify-content: center; cursor: zoom-out; z-index: 60; }}
+  #pmbox {{ background: #11151f; border: 1px solid #313747; border-radius: 10px;
+           max-width: min(680px, 88vw); max-height: 80vh; overflow: auto;
+           padding: 20px 24px; cursor: default; }}
+  #pmname {{ color: #a6e3a1; font-size: 13px; margin: 0 0 12px;
+            border-bottom: 1px solid #1f2430; padding-bottom: 10px; }}
+  #pmtext {{ color: #cdd6f4; font-size: 14px; line-height: 1.55; white-space: pre-wrap;
+            word-break: break-word; margin: 0; }}
+  #pmtext.none {{ color: #6c7394; font-style: italic; }}
 </style>
 </head>
 <body>
@@ -257,11 +293,14 @@ PAGE_TEMPLATE = """<!doctype html>
   <figure id="lbfig"><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
   <button id="lbnext" class="lbnav" aria-label="Next (right arrow)">&rsaquo;</button>
 </div>
+<div id="pm"><div id="pmbox"><p id="pmname"></p><p id="pmtext"></p></div></div>
 <script id="payload" type="application/json">{data}</script>
 <script>
 const DATA = JSON.parse(document.getElementById('payload').textContent);
 // Workflow column order: release date, ties simplest-first (see WORKFLOW_ORDER).
 const WF_ORDER = {wf_order};
+// Full prompt text keyed by prompt name (prompts/<name>.txt). Row headers use it.
+const PROMPT_TEXTS = {prompt_texts};
 function wfKey(w) {{ const i = WF_ORDER.indexOf(w); return i < 0 ? [1, 0, w] : [0, i, '']; }}
 function wfCmp(a, b) {{
   const ka = wfKey(a), kb = wfKey(b);
@@ -308,6 +347,16 @@ function lbStep(delta) {{
   lbShow();
 }}
 function lbClose() {{ document.getElementById('lb').style.display = 'none'; }}
+// Prompt-text popup: reveal the full prompt behind a row header's short name.
+function showPrompt(name) {{
+  document.getElementById('pmname').textContent = name;
+  const txt = PROMPT_TEXTS[name];
+  const el = document.getElementById('pmtext');
+  if (txt) {{ el.textContent = txt; el.className = ''; }}
+  else {{ el.textContent = 'No prompt text on file for this one, Captain.'; el.className = 'none'; }}
+  document.getElementById('pm').style.display = 'flex';
+}}
+function pmClose() {{ document.getElementById('pm').style.display = 'none'; }}
 function esc(s) {{ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }}
 function render() {{
   const wfSel = selected('wf'), prSel = selected('pr');
@@ -344,8 +393,10 @@ function render() {{
   for (const p of rows) {{
     const tr = document.createElement('tr');
     const rh = document.createElement('th');
+    rh.className = 'promptname';
     rh.textContent = p;
-    rh.title = p;
+    rh.title = 'Click to read the full prompt';
+    rh.addEventListener('click', () => showPrompt(p));
     tr.appendChild(rh);
     // Collect this row's images (visible columns, in order) so the lightbox can
     // page prev/next through the same prompt across workflows.
@@ -410,7 +461,14 @@ document.getElementById('lbprev').addEventListener('click', e => {{ e.stopPropag
 document.getElementById('lbnext').addEventListener('click', e => {{ e.stopPropagation(); lbStep(1); }});
 document.getElementById('lbfig').addEventListener('click', e => e.stopPropagation());
 document.getElementById('lb').addEventListener('click', lbClose);
+// Prompt popup: click the backdrop to close, but not clicks inside the box.
+document.getElementById('pmbox').addEventListener('click', e => e.stopPropagation());
+document.getElementById('pm').addEventListener('click', pmClose);
 document.addEventListener('keydown', e => {{
+  if (document.getElementById('pm').style.display === 'flex') {{
+    if (e.key === 'Escape') pmClose();
+    return;
+  }}
   if (document.getElementById('lb').style.display !== 'flex') return;
   if (e.key === 'ArrowLeft') {{ e.preventDefault(); lbStep(-1); }}
   else if (e.key === 'ArrowRight') {{ e.preventDefault(); lbStep(1); }}
