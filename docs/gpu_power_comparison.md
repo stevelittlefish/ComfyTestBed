@@ -7,9 +7,9 @@ core's **hardware**, not its software — and what it did to our timings.
 
 | | Previous runs | This run (400 W batch) |
 |---|---|---|
-| **Card** | RTX 3090 **Founders Edition** | RTX 3090, third-party (non-FE) board |
+| **Card** | MSI GeForce RTX 3090 **Gaming X Trio** | RTX 3090 **Founders Edition** |
 | **Power limit** | Restricted to **250 W** | Unrestricted, **400 W** |
-| **Max board power** | Lower (FE ceiling) | Higher than the FE |
+| **Board class** | Third-party (aftermarket cooler) | Reference (Founders Edition) |
 
 Everything else — the ComfyUI server, the workflows, the seeds policy, the
 warm-up discipline — was unchanged. The only variable that moved was the GPU and
@@ -22,7 +22,7 @@ watts (and a higher ceiling) buys you.**
   for a single render, cold-start excluded — the runner fires a discarded warm-up
   per workflow before timing anything).
 - **"250 W avg":** mean over the **27** prompts each model was run on under the
-  restricted Founders Edition.
+  restricted MSI Gaming X Trio.
 - **"400 W avg":** mean over the **8** prompts run on the unrestricted card —
   `birch_branch` and `kodama_forest_spirit`, plus the latest batch
   (`knight_plate_armour`, `space_marine_soldier`, `demolition_robot`,
