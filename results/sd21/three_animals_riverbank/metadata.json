@@ -1,0 +1,11 @@
+{
+  "workflow": "sd21",
+  "prompt": "three_animals_riverbank",
+  "prompt_text": "A misty riverbank at dawn with three different animals sharing the scene: a red fox standing alert on the near bank, a grey heron wading in the shallows with its long neck curved, and a red deer stag drinking at the water's edge in the background. Each animal clearly distinct and anatomically correct, soft golden morning light through low mist, dew on the grass, calm water reflections, photorealistic wildlife photography, natural muted colour, believable coexisting composition.",
+  "seed": 2949402411,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 3.14,
+  "generated_at": "2026-09-10T16:12:06.516188+00:00"
+}

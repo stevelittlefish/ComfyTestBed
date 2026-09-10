@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_klein_9b",
+  "prompt": "tpose_female_character",
+  "prompt_text": "a female character in practical fitted athletic clothing, realistic normal human proportions, full body character from head to toe, standing in a T-pose with both arms stretched straight out horizontally to the sides, fingers spread, empty hands, legs slightly apart, feet flat on the ground, facing forward, a single figure in a symmetrical T-pose, arms straight out horizontal, full body head to feet visible, neutral expression, evenly lit, plain light grey background, no cape, no cloak, no props",
+  "seed": 3906526680,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 46.9,
+  "generated_at": "2026-09-10T15:56:51.918874+00:00"
+}

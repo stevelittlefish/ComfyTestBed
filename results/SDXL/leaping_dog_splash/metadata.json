@@ -1,0 +1,11 @@
+{
+  "workflow": "SDXL",
+  "prompt": "leaping_dog_splash",
+  "prompt_text": "A powerful action photograph of a wet golden retriever leaping through shallow lake water at full stretch, mid-air, chasing a ball. An explosive crown of water spray and droplets frozen in the air around it, ripples radiating outward, sunlit backlit spray catching the light. Dynamic diagonal composition, strong sense of speed and motion, high shutter speed freezing every droplet, shallow depth of field, bright natural daylight, realistic wildlife-action photography.",
+  "seed": 1117080243,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.25,
+  "generated_at": "2026-09-10T15:42:43.880128+00:00"
+}

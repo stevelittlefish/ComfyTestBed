@@ -1,0 +1,11 @@
+{
+  "workflow": "flux1_krea_dev",
+  "prompt": "colour_binding_objects",
+  "prompt_text": "Five simple objects arranged in a single neat row on a plain white table, left to right: a matte red cube, a glossy blue sphere, a bright green cone, a yellow cylinder, and a small purple pyramid. Each object is its own distinct solid colour with no colour bleeding between them, evenly spaced, all fully visible, clean even studio lighting, sharp focus, realistic product photography, plain neutral background.",
+  "seed": 1421145491,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 23.47,
+  "generated_at": "2026-09-10T15:49:38.488467+00:00"
+}
