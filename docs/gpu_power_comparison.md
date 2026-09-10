@@ -69,6 +69,57 @@ Times in seconds; lower is faster.
 | `z_image_turbo_int8` | 5.6 | 5.2 | 5.2 |
 | **Fleet mean (of per-model averages)** | **22.3** | **19.4** | **19.5** |
 
+## Energy per render — a back-of-the-envelope
+
+Speed isn't the whole story; watts spent matter too. Energy = power × time, so
+multiplying each rig's average render time by its power budget gives the energy
+drawn per image. **Caveat:** this assumes the card actually pulls its full power
+cap for the whole render — a fair approximation for a compute-bound diffusion load,
+but the cap is a ceiling, not a measured average, so read these as ballpark, not
+metered truth.
+
+| Workflow | Trio @ 250 W (Wh) | FE @ 400 W (Wh) | Trio @ 380 W (Wh) |
+|---|--:|--:|--:|
+| `Flux_Schnell` | 0.64 | 0.92 | 0.87 |
+| `SD35_large` | 2.75 | 3.75 | 3.61 |
+| `SD35_medium` | 1.08 | 1.49 | 1.41 |
+| `SDXL` | 0.71 | 1.02 | 0.98 |
+| `chroma` | 4.33 | 6.00 | 5.71 |
+| `cyberrealistic_pony` | 0.71 | 1.04 | 0.98 |
+| `flux1_krea_dev` | 1.86 | 2.61 | 2.48 |
+| `flux2_klein_4b` | 1.83 | 2.51 | 2.39 |
+| `flux2_klein_9b` | 3.74 | 5.15 | 4.95 |
+| `flux_dev` | 1.85 | 2.64 | 2.48 |
+| `hassaku_xl` | 0.71 | 1.02 | 0.98 |
+| `illustrious_xl` | 0.71 | 1.04 | 0.98 |
+| `juggernaut_xi` | 0.71 | 1.04 | 0.98 |
+| `krea2_turbo` | 1.21 | 1.71 | 1.62 |
+| `pony_realism` | 0.71 | 1.04 | 0.98 |
+| `qwen_image` | 4.04 | 5.62 | 5.38 |
+| `sd15` | 0.15 | 0.24 | 0.22 |
+| `sd21` | 0.22 | 0.35 | 0.33 |
+| `sd35_large_turbo` | 0.43 | 0.59 | 0.55 |
+| `z_image` | 3.79 | 4.90 | 4.71 |
+| `z_image_turbo_int8` | 0.39 | 0.58 | 0.55 |
+| **Fleet mean per render** | **1.55** | **2.16** | **2.06** |
+| **Fleet mean (joules)** | **5,584 J** | **7,759 J** | **7,398 J** |
+| **vs 250 W** | — | **+39%** | **+33%** |
+
+**The restricted card is by far the most energy-efficient — and it isn't close.**
+Unrestricting the GPU makes each render ~13% *faster* but burns **~33–39% more
+energy** to do it. The arithmetic is unforgiving: going unrestricted raises power by
+52–60% (250 → 380/400 W) while cutting time by only ~13%, and since energy is the
+product of the two, the power hike swamps the time saving. "Race to idle" loses
+here — the render simply doesn't finish fast enough to pay back the extra watts it
+guzzles while running.
+
+Between the two unrestricted rigs, the **Trio @ 380 W is the slightly thriftier**
+(2.06 vs 2.16 Wh) — same speed as the FE, 20 W less on the meter.
+
+**The trade-off in one line:** want speed, unrestrict it (~13% quicker); want a
+cool, quiet, cheap-to-run ship, the 250 W cap costs a third less energy per image
+for a modest time penalty.
+
 ## What it means
 
 - **Both unrestricted cards are about 13% faster than the power-restricted one.**
