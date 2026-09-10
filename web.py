@@ -390,6 +390,13 @@ function lbStep(axis, delta) {{
   if (axis === 'col') LB.ci = next; else LB.ri = next;
   lbShow();
 }}
+// Jump to the first populated cell scanning inward from `from` (delta = search
+// direction) along the current row: 0 -> start, 9 -> end.
+function lbJumpCol(from, delta) {{
+  for (let c = from; c >= 0 && c < LB.cols.length; c += delta) {{
+    if (lbSrc(LB.ri, c)) {{ LB.ci = c; lbShow(); return; }}
+  }}
+}}
 function lbClose() {{ document.getElementById('lb').style.display = 'none'; }}
 // Prompt-text popup: reveal the full prompt behind a row header's short name.
 function showPrompt(name) {{
@@ -516,6 +523,8 @@ document.addEventListener('keydown', e => {{
   else if (e.key === 'ArrowRight') {{ e.preventDefault(); lbStep('col', 1); }}
   else if (e.key === 'ArrowUp') {{ e.preventDefault(); lbStep('row', -1); }}
   else if (e.key === 'ArrowDown') {{ e.preventDefault(); lbStep('row', 1); }}
+  else if (e.key === '0') {{ e.preventDefault(); lbJumpCol(0, 1); }}      // start of row
+  else if (e.key === '9') {{ e.preventDefault(); lbJumpCol(LB.cols.length - 1, -1); }}  // end of row
   else if (e.key === 'Escape') {{ lbClose(); }}
 }});
 restoreFilters();
