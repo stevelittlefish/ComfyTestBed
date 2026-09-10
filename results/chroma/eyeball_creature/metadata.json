@@ -1,0 +1,11 @@
+{
+  "workflow": "chroma",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 1595948647,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 53.41,
+  "generated_at": "2026-09-10T14:24:54.440477+00:00"
+}

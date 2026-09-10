@@ -1,0 +1,11 @@
+{
+  "workflow": "flux_dev",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 2868829988,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 23.87,
+  "generated_at": "2026-09-10T14:42:30.159352+00:00"
+}

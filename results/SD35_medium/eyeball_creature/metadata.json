@@ -1,0 +1,11 @@
+{
+  "workflow": "SD35_medium",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 3666200961,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 13.36,
+  "generated_at": "2026-09-10T14:19:55.327549+00:00"
+}

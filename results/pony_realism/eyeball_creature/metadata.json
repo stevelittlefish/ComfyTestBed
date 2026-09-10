@@ -1,0 +1,11 @@
+{
+  "workflow": "pony_realism",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 2420295494,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.29,
+  "generated_at": "2026-09-10T14:55:03.932658+00:00"
+}

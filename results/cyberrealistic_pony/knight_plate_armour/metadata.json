@@ -1,0 +1,11 @@
+{
+  "workflow": "cyberrealistic_pony",
+  "prompt": "knight_plate_armour",
+  "prompt_text": "a medieval knight in polished steel plate armour, ornate but grounded, realistic normal human proportions, full body character from head to toe, standing in a relaxed A-pose with arms held slightly away from the sides, empty hands, feet apart on the ground, facing forward, evenly lit, plain light grey background, no cape, no cloak",
+  "seed": 3815437825,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.53,
+  "generated_at": "2026-09-10T14:29:15.362176+00:00"
+}

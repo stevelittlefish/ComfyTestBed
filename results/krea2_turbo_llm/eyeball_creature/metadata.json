@@ -1,0 +1,11 @@
+{
+  "workflow": "krea2_turbo_llm",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 1681839788,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 26.6,
+  "generated_at": "2026-09-10T14:51:38.166676+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 2505757693,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.2,
+  "generated_at": "2026-09-10T15:09:16.196102+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "hassaku_xl",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 2082814933,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 9.25,
+  "generated_at": "2026-09-10T14:44:42.241300+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "demolition_robot",
+  "prompt_text": "brutal sinister demolition robot, hulking armored bolted-steel torso mounted directly on a single heavy caterpillar-track chassis, no legs, thick appendage arms ending in a hydraulic hammer a crushing pincer and a sensor, an angular armored boxy head with two glowing red slit lenses and a grim slot mouth, no round doll eyes, no face, chipped scorched black and orange warning paint, heavy hostile and intimidating, a single object, seen from a three-quarter view angle, centered, the whole object visible, even soft studio lighting, plain neutral background, product render",
+  "seed": 4035944249,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.2,
+  "generated_at": "2026-09-10T15:09:10.993637+00:00"
+}

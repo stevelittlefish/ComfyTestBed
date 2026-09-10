@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image",
+  "prompt": "mushroom_forest_god_head",
+  "prompt_text": "an ethereal floating forest-god head wearing a giant mushroom cap as a crown, a peaceful ancient face of mottled bark and lichen, wide rounded mushroom dome above, soft closed eyes, no neck no torso no body, just the head and the mushroom, heavy solid rounded form, symmetrical, a single object, seen from a three-quarter view angle, centered, the whole object visible, even soft studio lighting, plain neutral background, product render",
+  "seed": 3337808590,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 44.18,
+  "generated_at": "2026-09-10T15:07:24.810698+00:00"
+}
