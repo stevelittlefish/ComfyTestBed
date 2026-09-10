@@ -259,6 +259,13 @@ PAGE_TEMPLATE = """<!doctype html>
   .lbnav:disabled:hover {{ background: rgba(31,36,48,.7); }}
   #lbprev {{ left: 16px; }}
   #lbnext {{ right: 16px; }}
+  /* Up/down step through prompts (rows) in the same workflow column. */
+  #lbup, #lbdown {{ left: 50%; top: auto; transform: translateX(-50%); }}
+  #lbup {{ top: 16px; }}
+  #lbdown {{ bottom: 16px; }}
+  #lbup span, #lbdown span {{ display: block; }}
+  #lbup span {{ transform: rotate(90deg); }}
+  #lbdown span {{ transform: rotate(-90deg); }}
   /* Prompt-text popup: click a prompt row header to read the full prompt. */
   #pm {{ position: fixed; inset: 0; background: rgba(0,0,0,.85); display: none;
         align-items: center; justify-content: center; cursor: zoom-out; z-index: 60; }}
@@ -292,9 +299,11 @@ PAGE_TEMPLATE = """<!doctype html>
   <main id="main"></main>
 </div>
 <div id="lb">
-  <button id="lbprev" class="lbnav" aria-label="Previous (left arrow)">&lsaquo;</button>
+  <button id="lbprev" class="lbnav" aria-label="Previous workflow (left arrow)">&lsaquo;</button>
+  <button id="lbup" class="lbnav" aria-label="Previous prompt (up arrow)"><span>&lsaquo;</span></button>
   <figure id="lbfig"><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
-  <button id="lbnext" class="lbnav" aria-label="Next (right arrow)">&rsaquo;</button>
+  <button id="lbdown" class="lbnav" aria-label="Next prompt (down arrow)"><span>&lsaquo;</span></button>
+  <button id="lbnext" class="lbnav" aria-label="Next workflow (right arrow)">&rsaquo;</button>
 </div>
 <div id="pm"><div id="pmbox"><p id="pmname"></p><p id="pmtext"></p></div></div>
 <script id="payload" type="application/json">{data}</script>
@@ -327,30 +336,57 @@ function setAll(cls, on) {{
   saveFilters();
   render();
 }}
-// Lightbox state: the current row's images (same prompt, across the visible
-// workflow columns, in order) plus which one we're looking at.
-let LB = {{ items: [], idx: 0 }};
-function lbShow() {{
-  const it = LB.items[LB.idx];
-  if (!it) return;
-  document.getElementById('lbimg').src = it.src;
-  document.getElementById('lbcap').innerHTML =
-    '<span class="pr">' + esc(it.prompt) + '</span> / ' +
-    '<span class="wf">' + esc(it.workflow) + '</span> ' +
-    '<span class="pos">(' + (LB.idx + 1) + '/' + LB.items.length + ')</span>';
-  document.getElementById('lbprev').disabled = (LB.idx === 0);
-  document.getElementById('lbnext').disabled = (LB.idx === LB.items.length - 1);
+// Lightbox state: the currently visible grid (rows = prompts, cols = workflows,
+// as filtered/sorted by render) plus our row/col position within it. Left/right
+// walk workflows along a prompt; up/down walk prompts within a workflow.
+let LB = {{ rows: [], cols: [], ri: 0, ci: 0 }};
+// The grid currently on screen (filtered + sorted), so the lightbox can page
+// through the same prompts/workflows the matrix shows. Set by render().
+let VIEW = {{ rows: [], cols: [] }};
+function lbCell(ri, ci) {{
+  return (LOOKUP[LB.rows[ri]] || {{}})[LB.cols[ci]] || null;
 }}
-function openLightbox(items, idx) {{
-  LB.items = items; LB.idx = idx;
+// First image src for a cell, or null if that cell is empty.
+function lbSrc(ri, ci) {{
+  const it = lbCell(ri, ci);
+  return (it && it.images.length) ? it.images[0] : null;
+}}
+// Nearest index (in the given direction) whose cell has an image, else -1.
+function lbSeek(axis, delta) {{
+  if (axis === 'col') {{
+    for (let c = LB.ci + delta; c >= 0 && c < LB.cols.length; c += delta)
+      if (lbSrc(LB.ri, c)) return c;
+  }} else {{
+    for (let r = LB.ri + delta; r >= 0 && r < LB.rows.length; r += delta)
+      if (lbSrc(r, LB.ci)) return r;
+  }}
+  return -1;
+}}
+function lbShow() {{
+  const src = lbSrc(LB.ri, LB.ci);
+  if (!src) return;
+  const prompt = LB.rows[LB.ri], workflow = LB.cols[LB.ci];
+  document.getElementById('lbimg').src = src;
+  document.getElementById('lbcap').innerHTML =
+    '<span class="pr">' + esc(prompt) + '</span> / ' +
+    '<span class="wf">' + esc(workflow) + '</span> ' +
+    '<span class="pos">(prompt ' + (LB.ri + 1) + '/' + LB.rows.length +
+    ', workflow ' + (LB.ci + 1) + '/' + LB.cols.length + ')</span>';
+  document.getElementById('lbprev').disabled = (lbSeek('col', -1) < 0);
+  document.getElementById('lbnext').disabled = (lbSeek('col', 1) < 0);
+  document.getElementById('lbup').disabled   = (lbSeek('row', -1) < 0);
+  document.getElementById('lbdown').disabled = (lbSeek('row', 1) < 0);
+}}
+function openLightbox(ri, ci) {{
+  LB.rows = VIEW.rows; LB.cols = VIEW.cols; LB.ri = ri; LB.ci = ci;
   document.getElementById('lb').style.display = 'flex';
   lbShow();
 }}
-function lbStep(delta) {{
-  if (!LB.items.length) return;
-  const next = LB.idx + delta;
-  if (next < 0 || next >= LB.items.length) return;  // clamp at ends, no wrap
-  LB.idx = next;
+// Step one cell along an axis, skipping empty cells, clamping at the ends.
+function lbStep(axis, delta) {{
+  const next = lbSeek(axis, delta);
+  if (next < 0) return;  // no populated cell that way — clamp, no wrap
+  if (axis === 'col') LB.ci = next; else LB.ri = next;
   lbShow();
 }}
 function lbClose() {{ document.getElementById('lb').style.display = 'none'; }}
@@ -369,6 +405,7 @@ function render() {{
   const wfSel = selected('wf'), prSel = selected('pr');
   const cols = [...ALL_WF].sort(wfCmp).filter(w => wfSel.has(w));
   const rows = [...ALL_PR].sort().filter(p => prSel.has(p));
+  VIEW = {{ rows: rows, cols: cols }};
   const main = document.getElementById('main');
 
   if (!cols.length || !rows.length) {{
@@ -397,7 +434,7 @@ function render() {{
 
   // Body: one row per prompt, one image cell per workflow.
   const tbody = document.createElement('tbody');
-  for (const p of rows) {{
+  for (const [ri, p] of rows.entries()) {{
     const tr = document.createElement('tr');
     const rh = document.createElement('th');
     rh.className = 'promptname';
@@ -405,23 +442,18 @@ function render() {{
     rh.title = 'Click to read the full prompt';
     rh.addEventListener('click', () => showPrompt(p));
     tr.appendChild(rh);
-    // Collect this row's images (visible columns, in order) so the lightbox can
-    // page prev/next through the same prompt across workflows.
-    const rowItems = [];
-    for (const w of cols) {{
+    for (const [ci, w] of cols.entries()) {{
       const td = document.createElement('td');
       td.className = 'cell';
       const it = (LOOKUP[p] || {{}})[w];
       if (it && it.images.length) {{
         const src = it.images[0];
         const secs = it.meta.generation_seconds;
-        const myIdx = rowItems.length;
-        rowItems.push({{ src: src, workflow: w, prompt: p }});
         const wrap = document.createElement('div');
         wrap.className = 'cellwrap';
         const img = document.createElement('img');
         img.loading = 'lazy'; img.src = src; img.alt = p + ' / ' + w;
-        img.addEventListener('click', () => openLightbox(rowItems, myIdx));
+        img.addEventListener('click', () => openLightbox(ri, ci));
         wrap.appendChild(img);
         if (secs != null) {{
           const t = document.createElement('span');
@@ -464,8 +496,10 @@ function restoreFilters() {{
 document.querySelectorAll('.wf, .pr').forEach(c => c.addEventListener('change', () => {{ saveFilters(); render(); }}));
 
 // Lightbox controls: buttons, backdrop-to-close, and arrow keys.
-document.getElementById('lbprev').addEventListener('click', e => {{ e.stopPropagation(); lbStep(-1); }});
-document.getElementById('lbnext').addEventListener('click', e => {{ e.stopPropagation(); lbStep(1); }});
+document.getElementById('lbprev').addEventListener('click', e => {{ e.stopPropagation(); lbStep('col', -1); }});
+document.getElementById('lbnext').addEventListener('click', e => {{ e.stopPropagation(); lbStep('col', 1); }});
+document.getElementById('lbup').addEventListener('click', e => {{ e.stopPropagation(); lbStep('row', -1); }});
+document.getElementById('lbdown').addEventListener('click', e => {{ e.stopPropagation(); lbStep('row', 1); }});
 document.getElementById('lbfig').addEventListener('click', e => e.stopPropagation());
 document.getElementById('lb').addEventListener('click', lbClose);
 // Prompt popup: click the backdrop to close, but not clicks inside the box.
@@ -477,8 +511,10 @@ document.addEventListener('keydown', e => {{
     return;
   }}
   if (document.getElementById('lb').style.display !== 'flex') return;
-  if (e.key === 'ArrowLeft') {{ e.preventDefault(); lbStep(-1); }}
-  else if (e.key === 'ArrowRight') {{ e.preventDefault(); lbStep(1); }}
+  if (e.key === 'ArrowLeft') {{ e.preventDefault(); lbStep('col', -1); }}
+  else if (e.key === 'ArrowRight') {{ e.preventDefault(); lbStep('col', 1); }}
+  else if (e.key === 'ArrowUp') {{ e.preventDefault(); lbStep('row', -1); }}
+  else if (e.key === 'ArrowDown') {{ e.preventDefault(); lbStep('row', 1); }}
   else if (e.key === 'Escape') {{ lbClose(); }}
 }});
 restoreFilters();
