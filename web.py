@@ -82,6 +82,7 @@ WORKFLOW_ORDER = [
     "flux2_klein_4b",       # FLUX.2 Klein 4B — Nov 2025 (smaller, simpler)
     "flux2_klein_9b",       # FLUX.2 Klein 9B — Nov 2025
     "flux2_dev",            # FLUX.2 dev — Nov 2025 (fuller dev model, after Klein)
+    "flux2_dev_turbo",      # FLUX.2 dev + Turbo LoRA — Nov 2025 (distilled 8-step shortcut)
 ]
 
 
