@@ -1,0 +1,11 @@
+{
+  "workflow": "z_image_turbo_int8",
+  "prompt": "parasite_heart_wired",
+  "prompt_text": "A stylised body-horror giant human heart, floating in the air with wires and cables coming out of it. Rendered on a plain background. The cables are floating in all directions like hair in static electricity. The cables are short and terminate in small metallic nodules. Extra blood and gore all around. The heart is infected with some kind of parasite.",
+  "seed": 810528758,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.18,
+  "generated_at": "2026-09-12T16:52:51.230146+00:00"
+}

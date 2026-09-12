@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_dev",
+  "prompt": "woman_head_robot_body",
+  "prompt_text": "A photograph of a woman's head grafted onto a robot body.  The woman's severed head has wires and tubes connecting it to the robot body.  There are bloody wounds with wires going in. Gory, futuristic, sci-fi.",
+  "seed": 3106545972,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 87.77,
+  "generated_at": "2026-09-12T16:39:28.900400+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_dev",
+  "prompt": "seraphina_forest_guardian",
+  "prompt_text": "best quality, absurdres, aesthetic, full body portrait, Seraphina, Human, Female, Unknown age, Black sundress, Guardian of the forest, Pink hair, Long hair, Amber eyes, White teeth, Pink lips, White skin, Soft skin.",
+  "seed": 1876570541,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 87.72,
+  "generated_at": "2026-09-12T16:17:29.969715+00:00"
+}
