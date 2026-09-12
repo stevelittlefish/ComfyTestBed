@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_dev_turbo",
+  "prompt": "birch_branch",
+  "prompt_text": "A silver birch tree branch with many leaves.  Realistic, flat, branch with leaves.  On a plain grey background.",
+  "seed": 3543401975,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 39.65,
+  "generated_at": "2026-09-12T17:15:22.101215+00:00"
+}

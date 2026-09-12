@@ -1,0 +1,11 @@
+{
+  "workflow": "flux2_dev_turbo",
+  "prompt": "strange_industrial_detritus",
+  "prompt_text": "A strange photograph.  It's not even clear what is present.  Parts of industrial machinery, meat, eyeballs. Lots of strange insects crawling everywherre.  Plants, dirt,  bits of food with hair and fluff stuck to it.  Dirty dishes, fabric, worms, parts of people, small toys, sunlight, ball bearings, screws, wires, nails. Carpet, dirty soiled sheets, food.  Realistic, HDR. 8K ultrahd.  Deviant Art.  Creepy. Photographic.  Cinematic.",
+  "seed": 4202297911,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 39.71,
+  "generated_at": "2026-09-12T17:39:11.800921+00:00"
+}
