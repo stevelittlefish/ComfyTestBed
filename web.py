@@ -80,7 +80,8 @@ WORKFLOW_ORDER = [
     "qwen_image",           # Qwen-Image — 2025
     "anima_aesthetic_1_1",  # Anima Aesthetic v1.1 — 2026 (Qwen-Image anime finetune)
     "flux2_klein_4b",       # FLUX.2 Klein 4B — Nov 2025 (smaller, simpler)
-    "flux2_klein_9b",       # FLUX.2 Klein 9B — Nov 2025 (newest)
+    "flux2_klein_9b",       # FLUX.2 Klein 9B — Nov 2025
+    "flux2_dev",            # FLUX.2 dev — Nov 2025 (fuller dev model, after Klein)
 ]
 
 
