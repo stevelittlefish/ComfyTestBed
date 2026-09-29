@@ -97,7 +97,7 @@ dependencies. If a feature ever needs a third-party package, we rewrite it in Go
 5. **Browse.** Launch the gallery:
 
    ```bash
-   python3 web.py            # http://127.0.0.1:8000
+   python3 web.py            # listen on all interfaces (0.0.0.0:8000)
    ```
 
    Grid of every result, with checkboxes to filter by workflow and prompt, and

@@ -6,7 +6,7 @@ in a grid, with filters for workflows and prompts. Standard library only — it'
 http.server and some HTML I typed by hand like an animal. No virtualenv shall pass.
 
 Usage:
-    python3 web.py            # serve on http://127.0.0.1:8000
+    python3 web.py            # listen on all interfaces, port 8000
     python3 web.py --port N   # serve somewhere else
 """
 
@@ -796,7 +796,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     ap = argparse.ArgumentParser(description="Browse ComfyTestBed results.")
-    ap.add_argument("--host", default="127.0.0.1")
+    ap.add_argument("--host", default="0.0.0.0")
     ap.add_argument("--port", type=int, default=8000)
     args = ap.parse_args()
 
