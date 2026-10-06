@@ -79,6 +79,8 @@ WORKFLOW_ORDER = [
     "krea2_turbo_llm",      # Krea2 turbo — 2025 (+ LLM prompt rewrite; more complex)
     "qwen_image",           # Qwen-Image — 2025
     "anima_aesthetic_1_1",  # Anima Aesthetic v1.1 — 2026 (Qwen-Image anime finetune)
+    "qwen_image_2_1",       # Qwen-Image 2.1 — 2026 (plain)
+    "qwen_image_2_1_llm",   # Qwen-Image 2.1 — 2026 (+ Qwen3.5 9B prompt enhancer)
     "flux2_klein_4b",       # FLUX.2 Klein 4B — Nov 2025 (smaller, simpler)
     "flux2_klein_9b",       # FLUX.2 Klein 9B — Nov 2025
     "flux2_dev",            # FLUX.2 dev — Nov 2025 (fuller dev model, after Klein)
