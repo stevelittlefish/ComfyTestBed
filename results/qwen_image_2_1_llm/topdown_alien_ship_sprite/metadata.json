@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1_llm",
+  "prompt": "topdown_alien_ship_sprite",
+  "prompt_text": "Highly detailed sprite of a spaceship for a top down shooter.  Strange alien ship with forward swept wings.  Robotic insectoid parts on the ship.  Plain black background.  Hi tech, futuristic.  High resolution graphics.  Modern space game asset. HD extra large sprite.  Neon 80s retro future asthetic.  Top down orthographic projection.",
+  "seed": 4261214974,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 24.6,
+  "generated_at": "2026-10-06T12:42:55.054755+00:00"
+}

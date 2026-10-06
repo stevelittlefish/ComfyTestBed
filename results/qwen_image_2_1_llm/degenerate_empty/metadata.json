@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1_llm",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 1114399076,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 22.45,
+  "generated_at": "2026-10-06T12:30:23.481140+00:00"
+}

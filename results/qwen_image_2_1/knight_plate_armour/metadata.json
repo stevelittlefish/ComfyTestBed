@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1",
+  "prompt": "knight_plate_armour",
+  "prompt_text": "a medieval knight in polished steel plate armour, ornate but grounded, realistic normal human proportions, full body character from head to toe, standing in a relaxed A-pose with arms held slightly away from the sides, empty hands, feet apart on the ground, facing forward, evenly lit, plain light grey background, no cape, no cloak",
+  "seed": 2496199445,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 13.3,
+  "generated_at": "2026-10-06T12:18:05.703195+00:00"
+}

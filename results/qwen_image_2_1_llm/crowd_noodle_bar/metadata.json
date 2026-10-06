@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1_llm",
+  "prompt": "crowd_noodle_bar",
+  "prompt_text": "A busy late-night noodle restaurant in Tokyo with eight customers doing different things: one couple talking quietly, a delivery rider checking a phone, an elderly man eating alone, two students laughing, and a chef working behind the counter. Steam rising from bowls, condensation on windows, realistic fluorescent and warm kitchen lighting, candid documentary photography, natural body language, believable faces, dense but coherent scene.",
+  "seed": 640409602,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 28.53,
+  "generated_at": "2026-10-06T12:29:34.573088+00:00"
+}

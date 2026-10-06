@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1_llm",
+  "prompt": "seraphina_forest_guardian",
+  "prompt_text": "best quality, absurdres, aesthetic, full body portrait, Seraphina, Human, Female, Unknown age, Black sundress, Guardian of the forest, Pink hair, Long hair, Amber eyes, White teeth, Pink lips, White skin, Soft skin.",
+  "seed": 853769951,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 22.43,
+  "generated_at": "2026-10-06T12:39:41.359671+00:00"
+}

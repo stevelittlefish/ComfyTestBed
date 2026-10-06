@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 1690953281,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 13.3,
+  "generated_at": "2026-10-06T12:17:12.234708+00:00"
+}

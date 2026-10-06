@@ -1,0 +1,11 @@
+{
+  "workflow": "qwen_image_2_1_llm",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 2181273948,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.35,
+  "generated_at": "2026-10-06T12:38:49.389451+00:00"
+}
