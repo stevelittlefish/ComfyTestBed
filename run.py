@@ -9,9 +9,11 @@ Usage:
     python3 run.py            # generate everything not yet generated
     python3 run.py --force    # regenerate everything, even if it exists
     python3 run.py --list     # show the plan and do nothing (the coward's option)
+    python3 run.py --seed-per-prompt   # seed from the prompt text, same across workflows
 """
 
 import argparse
+import hashlib
 import json
 import os
 import random
@@ -102,17 +104,31 @@ def already_done(workflow_name, prompt_name):
                for f in os.listdir(d))
 
 
-def fill_placeholders(raw_workflow, cfg, prompt_text):
+def prompt_seed(prompt_text):
+    """A seed derived from the prompt text alone: random-looking, but every
+    workflow gets the same one for the same prompt, run after run."""
+    return int.from_bytes(hashlib.sha256(prompt_text.encode()).digest()[:4], "big")
+
+
+def fill_placeholders(raw_workflow, cfg, prompt_text, seed_per_prompt=False):
     """Swap the placeholder tokens for real values and parse to JSON.
 
     We do the swap on the raw text so a stray quote in the prompt doesn't
-    detonate the JSON structure — we escape it properly via json.dumps first."""
+    detonate the JSON structure — we escape it properly via json.dumps first.
+
+    With seed_per_prompt, the seed comes from the prompt text and the configured
+    seed is ignored — handy for comparing two quantisations of the same model."""
     gen = cfg.get("generation", {})
     prompt_ph = gen.get("prompt_placeholder", "%PROMPT%")
     seed_ph = gen.get("seed_placeholder", "%SEED%")
     configured_seed = gen.get("seed", -1)
 
-    seed = random.randint(0, 2**32 - 1) if configured_seed == -1 else int(configured_seed)
+    if seed_per_prompt:
+        seed = prompt_seed(prompt_text)
+    elif configured_seed == -1:
+        seed = random.randint(0, 2**32 - 1)
+    else:
+        seed = int(configured_seed)
 
     # json.dumps gives us a quoted, escaped string; strip the outer quotes so it
     # slots into the existing quotes in the workflow JSON.
@@ -165,18 +181,20 @@ def collect_images(base, history_entry):
     return images
 
 
-def generate(base, raw_workflow, cfg, prompt_text, client_id, timeout):
+def generate(base, raw_workflow, cfg, prompt_text, client_id, timeout,
+             seed_per_prompt=False):
     """Fill placeholders, submit, wait, and fetch the images. Returns
     (images, seed, elapsed_seconds). Raises on anything going wrong so the
     caller can decide whether to mourn or move on."""
     started = time.time()
-    workflow_json, seed = fill_placeholders(raw_workflow, cfg, prompt_text)
+    workflow_json, seed = fill_placeholders(raw_workflow, cfg, prompt_text,
+                                            seed_per_prompt)
     _, history_entry = submit_and_wait(base, workflow_json, client_id, timeout)
     images = collect_images(base, history_entry)
     return images, seed, time.time() - started
 
 
-def run(force=False, list_only=False, only_workflows=None):
+def run(force=False, list_only=False, only_workflows=None, seed_per_prompt=False):
     cfg = load_config()
     server = cfg.get("server", {})
     # Prefer an explicit base url; fall back to host/port for the nostalgic.
@@ -255,7 +273,8 @@ def run(force=False, list_only=False, only_workflows=None):
         holly(f"== {wf}: warming up the render core with something regrettable ==")
         holly(f"   (warm-up, discarded: \"{warmup}\")")
         try:
-            generate(base, workflows[wf], cfg, warmup, client_id, timeout)
+            generate(base, workflows[wf], cfg, warmup, client_id, timeout,
+                     seed_per_prompt)
             holly("   Warm-up complete. That image is now lost to history. You're welcome.")
         except urllib.error.URLError as e:
             failed += len(pending)
@@ -272,7 +291,8 @@ def run(force=False, list_only=False, only_workflows=None):
             holly(f"[{step}/{len(plan)}] Plotting course: {wf} / {pr} ...")
             try:
                 images, seed, elapsed = generate(
-                    base, workflows[wf], cfg, prompt_text, client_id, timeout)
+                    base, workflows[wf], cfg, prompt_text, client_id, timeout,
+                    seed_per_prompt)
             except urllib.error.URLError as e:
                 failed += 1
                 holly(f"    Couldn't reach the engine core at {base}. Is ComfyUI actually "
@@ -330,9 +350,13 @@ def main():
                     metavar="NAME",
                     help="Only run this workflow (its filename minus .json). "
                          "Repeat to run several, e.g. -w SDXL -w flux2_klein_9b.")
+    ap.add_argument("--seed-per-prompt", action="store_true",
+                    help="Derive each seed from the prompt text, so every workflow "
+                         "gets the same seed for the same prompt. Overrides the "
+                         "configured seed. Off by default.")
     args = ap.parse_args()
     run(force=args.force, list_only=args.list_only,
-        only_workflows=args.only_workflows)
+        only_workflows=args.only_workflows, seed_per_prompt=args.seed_per_prompt)
 
 
 if __name__ == "__main__":

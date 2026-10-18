@@ -6,6 +6,7 @@
 #   ./generate.sh --force                # regenerate everything (careful, Captain)
 #   ./generate.sh -w SDXL                # only one workflow
 #   ./generate.sh -w SDXL -w flux_dev    # several (repeat -w)
+#   ./generate.sh --seed-per-prompt      # same seed per prompt across all workflows
 #
 # Any arguments are passed straight through to run.py.
 set -euo pipefail
