@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "knight_plate_armour",
+  "prompt_text": "a medieval knight in polished steel plate armour, ornate but grounded, realistic normal human proportions, full body character from head to toe, standing in a relaxed A-pose with arms held slightly away from the sides, empty hands, feet apart on the ground, facing forward, evenly lit, plain light grey background, no cape, no cloak",
+  "seed": 634661812,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.35,
+  "generated_at": "2026-10-18T17:26:00.964626+00:00"
+}

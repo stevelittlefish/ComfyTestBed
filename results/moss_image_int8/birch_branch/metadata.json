@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "birch_branch",
+  "prompt_text": "A silver birch tree branch with many leaves.  Realistic, flat, branch with leaves.  On a plain grey background.",
+  "seed": 3450118568,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.33,
+  "generated_at": "2026-10-18T17:19:52.167787+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "oil_painting_classical",
+  "prompt_text": "A classical oil painting in the grand European tradition: a windswept coastal cliff at golden hour, a lone figure in flowing robes gazing out to a stormy sea, tall ships on the horizon. Rich impasto brushwork, warm chiaroscuro lighting, cracked varnish texture, deep shadows and luminous highlights, in the style of 19th-century romantic masters.",
+  "seed": 3716848440,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.4,
+  "generated_at": "2026-10-18T17:27:37.935180+00:00"
+}

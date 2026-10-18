@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "text_record_shop",
+  "prompt_text": "A small independent record shop at night, photographed from the street in the rain. Above the entrance is a bright neon sign that clearly reads \"MIDNIGHT RECORDS\". In the window is a handwritten card that reads \"OPEN UNTIL 2AM\". Wet pavement reflects the neon, shelves of vinyl records visible inside, cinematic but realistic nighttime photography.",
+  "seed": 2528519028,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.73,
+  "generated_at": "2026-10-18T17:32:10.930427+00:00"
+}

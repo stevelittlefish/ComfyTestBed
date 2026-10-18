@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "eyeball_creature",
+  "prompt_text": "Eyeball creature, very disgusting",
+  "seed": 1531641621,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.48,
+  "generated_at": "2026-10-18T17:24:43.531011+00:00"
+}

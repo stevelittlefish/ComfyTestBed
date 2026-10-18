@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "illustration_salt_desert",
+  "prompt_text": "A beautifully illustrated science-fiction book cover showing a tiny caravan of explorers crossing a vast salt desert beneath the ruins of a colossal orbital elevator. Sparse composition, restrained palette of pale cream, rust red and deep blue, textured gouache and ink, elegant shapes, strong negative space, sophisticated 1970s speculative-fiction illustration, not glossy digital concept art.",
+  "seed": 2358794842,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 19.36,
+  "generated_at": "2026-10-18T17:25:22.240883+00:00"
+}
