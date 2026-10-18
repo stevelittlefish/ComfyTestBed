@@ -1,0 +1,11 @@
+{
+  "workflow": "flux3_klein_base",
+  "prompt": "degenerate_word_salad",
+  "prompt_text": "Why does it when it was? Well, because it did do and then will, maybe when it is then it would be",
+  "seed": 318048650,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 25.61,
+  "generated_at": "2026-10-18T19:07:48.659061+00:00"
+}

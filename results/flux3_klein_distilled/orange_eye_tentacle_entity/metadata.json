@@ -1,0 +1,11 @@
+{
+  "workflow": "flux3_klein_distilled",
+  "prompt": "orange_eye_tentacle_entity",
+  "prompt_text": "Swirling biological entity.  Massive orange eye surrounded by spiral of pulsating wormlike tentacles. Flying at the camera through the blackness of space.  Weird, trippy.  Purple tentacles. Centered on a black background.  Wide angle.  Light from camera.",
+  "seed": 2014686532,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 5.19,
+  "generated_at": "2026-10-18T19:26:58.349715+00:00"
+}

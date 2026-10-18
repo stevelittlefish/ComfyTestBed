@@ -1,0 +1,11 @@
+{
+  "workflow": "flux3_klein_base",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 1363432520,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 25.63,
+  "generated_at": "2026-10-18T19:16:27.099884+00:00"
+}

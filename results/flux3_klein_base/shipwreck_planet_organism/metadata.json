@@ -1,0 +1,11 @@
+{
+  "workflow": "flux3_klein_base",
+  "prompt": "shipwreck_planet_organism",
+  "prompt_text": "A space ship has crashed into a planet sized organism.  Enormous biological entity.  Organs and veins on planet sized being.",
+  "seed": 889310264,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 25.6,
+  "generated_at": "2026-10-18T19:17:44.215734+00:00"
+}
