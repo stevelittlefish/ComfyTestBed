@@ -1,5 +1,5 @@
 {
-  "workflow": "moss_image_int8",
+  "workflow": "moss_image_int8_llm",
   "prompt": "shipwreck_planet_organism",
   "prompt_text": "A space ship has crashed into a planet sized organism.  Enormous biological entity.  Organs and veins on planet sized being.",
   "seed": 3431899244,

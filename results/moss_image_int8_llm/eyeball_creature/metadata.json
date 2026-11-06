@@ -1,5 +1,5 @@
 {
-  "workflow": "moss_image_int8",
+  "workflow": "moss_image_int8_llm",
   "prompt": "eyeball_creature",
   "prompt_text": "Eyeball creature, very disgusting",
   "seed": 1531641621,

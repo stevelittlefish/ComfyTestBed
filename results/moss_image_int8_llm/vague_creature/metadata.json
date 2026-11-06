@@ -1,5 +1,5 @@
 {
-  "workflow": "moss_image_int8",
+  "workflow": "moss_image_int8_llm",
   "prompt": "vague_creature",
   "prompt_text": "A creature",
   "seed": 1631601224,

@@ -1,5 +1,5 @@
 {
-  "workflow": "moss_image_int8",
+  "workflow": "moss_image_int8_llm",
   "prompt": "penink_tentacled_space_creature",
   "prompt_text": "Pen and ink illustration of a tentacled creature flying through space.  Many eyes.  Vibrant, colourful, vivid colours.  High contrast.  Bold.  Tentacled space creature.  Trippy.",
   "seed": 4102860997,

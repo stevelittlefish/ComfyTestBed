@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "vague_creature",
+  "prompt_text": "A creature",
+  "seed": 1631601224,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 16.42,
+  "generated_at": "2026-11-06T15:33:33.123509+00:00"
+}

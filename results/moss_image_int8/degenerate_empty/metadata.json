@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "degenerate_empty",
+  "prompt_text": "",
+  "seed": 3820012610,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 16.52,
+  "generated_at": "2026-11-06T15:23:33.595399+00:00"
+}

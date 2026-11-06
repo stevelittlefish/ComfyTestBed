@@ -1,5 +1,5 @@
 {
-  "workflow": "moss_image_int8",
+  "workflow": "moss_image_int8_llm",
   "prompt": "plain_a_woman",
   "prompt_text": "A woman",
   "seed": 544608945,

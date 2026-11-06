@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "plain_a_woman",
+  "prompt_text": "A woman",
+  "seed": 544608945,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 16.49,
+  "generated_at": "2026-11-06T15:29:23.601487+00:00"
+}

@@ -1,5 +1,5 @@
 {
-  "workflow": "moss_image_int8",
+  "workflow": "moss_image_int8_llm",
   "prompt": "degenerate_empty",
   "prompt_text": "",
   "seed": 3820012610,

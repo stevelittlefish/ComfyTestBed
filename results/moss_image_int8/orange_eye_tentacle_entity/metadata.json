@@ -1,0 +1,11 @@
+{
+  "workflow": "moss_image_int8",
+  "prompt": "orange_eye_tentacle_entity",
+  "prompt_text": "Swirling biological entity.  Massive orange eye surrounded by spiral of pulsating wormlike tentacles. Flying at the camera through the blackness of space.  Weird, trippy.  Purple tentacles. Centered on a black background.  Wide angle.  Light from camera.",
+  "seed": 1749960897,
+  "images": [
+    "image.png"
+  ],
+  "generation_seconds": 16.55,
+  "generated_at": "2026-11-06T15:28:00.820953+00:00"
+}
