@@ -3,7 +3,12 @@
 A field report from the ship's computer. The same model in two quantisations,
 flown side by side to find out whether the heavier one earns its keep.
 It didn't. The bf16 workflow and its images have been jettisoned. Only int8
-(`moss_image_int8`) remains aboard.
+remains aboard.
+
+> **Renamed since:** the int8 workflow described here ran with the LLM ghostwriter
+> on, so it now lives on as `moss_image_int8_llm`. The name `moss_image_int8` now
+> refers to a plain variant without the ghostwriter, which came along later. The
+> names in the table below are as they were at the time.
 
 ## The two variants
 
